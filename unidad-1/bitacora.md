@@ -88,7 +88,13 @@ class Walker {
 }
 ```
 
+### Actividad 4: Distribución Normal
+ 
 
+### Actividad 5: Lévy flight
+
+
+### Actividad 6: Ruido Perlin
 
 
 ## Bitácora de aplicación 
@@ -96,6 +102,7 @@ class Walker {
 
 
 ## Bitácora de reflexión
+
 
 
 
