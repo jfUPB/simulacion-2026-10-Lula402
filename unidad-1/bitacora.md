@@ -89,7 +89,67 @@ class Walker {
 ```
 
 ### Actividad 4: Distribución Normal
- 
+
+**CÓDIGO**
+```js
+let pizzita;
+
+function setup() {
+  createCanvas(400, 400);
+  background(255);
+  angleMode(DEGREES);
+  colorMode(HSB);
+  pizzita = new pizza();
+}
+
+function draw() {
+  pizzita.step();
+  pizzita.show();
+}
+
+class pizza {
+  constructor() {
+    this.x1 = 200;
+    this.y1 = 200;
+    this.radius = 80;
+    this.angle = 0;
+    this.offset = 10;   
+  }
+
+  show() { 
+    let alphaLoco = randomGaussian(55, 10);  
+    let alphaPizza = constrain(alphaLoco, 40, 70);
+    let colorPizza = color(random(0,50), 80, 100, alphaPizza);
+    stroke(colorPizza);
+    fill(colorPizza);
+    triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3)
+  }
+
+  step() {
+    this.angle = this.angle + randomGaussian(0, 15);
+    let a1 = this.angle
+    let a2 = this.angle + this.offset
+    
+    this.x2 = this.x1 + this.radius * cos(a1)
+    this.y2 = this.y1 + this.radius * sin(a1)
+    this.x3 = this.x1 + this.radius * cos(a2)
+    this.y3 = this.y1 + this.radius * sin(a2)
+  }
+}
+```
+
+**LINK**
+https://editor.p5js.org/Lula402/full/OGXnLVepe
+
+**CAPTURAS**
+
+<p align = center>
+<img width="183" height="185" alt="image" src="https://github.com/user-attachments/assets/683f87b4-2233-420c-953d-8015bba362b6" />
+</p>
+
+<p align = center>
+<img width="185" height="176" alt="image" src="https://github.com/user-attachments/assets/a90db073-4b7b-47c8-ab65-272ba6caf8ca" />
+</p>
 
 ### Actividad 5: Lévy flight
 
@@ -102,6 +162,7 @@ class Walker {
 
 
 ## Bitácora de reflexión
+
 
 
 
