@@ -250,6 +250,47 @@ https://editor.p5js.org/Lula402/full/CM-2z1QDY
 </p>
 
 ### Actividad 6: Ruido Perlin
+**EXPLICACIÓN**
+El concepto del ruido perlin lo visualicé como algo respirando, en este caso un circulo, debido a que ese ruido perlin muestra como se puede hacer de lo random algo orgánico. Entonces si se supone que con el Perlin los valores van a ser cercanos al anterior, entonces el cambio en el radio se iba a ver suave. Si quisiera que se mueva más brusco puedo aumentar el tiempo, para que al calcular el noise ya no sea tan delicado el salto entre el valor que elige y el anterior. El resultado obtenido es el esperado.
+
+**CÓDIGO**
+```js
+// By Lula
+let tiempo = 0;
+
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(0);
+  valorSuave = noise(tiempo)
+  radius = map(valorSuave, 0 , 1 , 5 ,200); 
+  let col = map(valorSuave, 0, 1, 100, 255);
+  fill(col, 150, 255);
+  circulo(radius);
+  tiempo += 0.02;
+}
+
+function circulo(r){
+  ellipse(width/2, height/2, r, r)
+}
+```
+
+**LINK**
+
+https://editor.p5js.org/Lula402/full/Y84Aspkrq
+
+**CAPTURA**
+
+<p align = center>
+<img width="199" height="209" alt="image" src="https://github.com/user-attachments/assets/cfe43e6e-b1c8-4d22-9fa1-e013cdb16d84" />
+</p>
+
+<p align = center>
+<img width="198" height="193" alt="image" src="https://github.com/user-attachments/assets/fb9b31a2-beb5-4917-9427-823793112ad5" />
+</p>
+
 
 
 ## Bitácora de aplicación 
@@ -257,6 +298,7 @@ https://editor.p5js.org/Lula402/full/CM-2z1QDY
 
 
 ## Bitácora de reflexión
+
 
 
 
