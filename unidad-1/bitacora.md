@@ -152,7 +152,102 @@ https://editor.p5js.org/Lula402/full/OGXnLVepe
 </p>
 
 ### Actividad 5: Lévy flight
+**EXPLICACIÓN**
+Usé el salto o vuelo de Lévy para ver la diferencia frente a una caminata clásica, una gaussiana y una usando Lévy. Esperaba un movimiento mas concentrado y que de la nada unos cuantos punticos rosados se vieran lejos, pero lo que se ve realmente es locura, los punticos rosados estan totalmente dispersos por el canvas. Para bajarle a la locura puedo disminuir el stepSize para que los saltos no sean tan largos y también podría aumentar el Alpha de la formulita de Lévy, para que asi la probabilidad de que se haga un salto grande disminuya y se vea más concentrado.
 
+**CÓDIGO**
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+let walker;
+let colorWalkers;
+
+function setup() {
+  createCanvas(640, 240);
+  walkerOG = new Walker("OG");
+  walkerLevy = new Walker("levy");
+  walkerGauss = new Walker("gauss");
+  background(255);
+}
+
+function draw() {
+  walkerOG.step();
+  walkerOG.show(0);
+  walkerLevy.step();
+  walkerLevy.show("#F88ACB");
+  walkerGauss.step();
+  walkerGauss.show("#009688");
+}
+
+class Walker {
+  constructor(type) {
+    this.x = width / 2;
+    this.y = height / 2;
+    this.type = type;
+  }
+
+  show(colorWalkers) {
+    stroke(colorWalkers);
+    point(this.x, this.y);
+  }
+
+  step() {
+    if (this.type === "OG") {
+      const choice = floor(random(4));
+      if (choice == 0) {
+        this.x++;
+      } else if (choice == 1) {
+        this.x--;
+      } else if (choice == 2) {
+        this.y--;
+      } else {
+        this.y++;
+      }
+    }
+    if (this.type === "gauss") {
+      this.x = randomGaussian(540, 20);
+      this.y = randomGaussian(120, 20);
+    }
+
+    if (this.type === "levy") {
+      let angle = random(TWO_PI);
+      let stepSize = levy() * 10;
+
+      let dx = stepSize * cos(angle);
+      let dy = stepSize * sin(angle);
+
+      this.x += dx;
+      this.y += dy;
+      this.x = constrain(this.x, 0, width);
+      this.y = constrain(this.y, 0, height);
+    }
+  }
+}
+
+function levy() {
+  while (true) {
+    let r1 = random(1);
+    let probability = pow(r1, 2);
+    let r2 = random(1);
+
+    if (r2 < probability) {
+      return r1;
+    }
+  }
+}
+```
+
+**LINK**
+
+https://editor.p5js.org/Lula402/full/CM-2z1QDY
+
+**CAPTURA**
+
+<p align = center>
+<img width="469" height="176" alt="image" src="https://github.com/user-attachments/assets/b6af956f-42fa-4920-bf88-c986bbf070f5" />
+</p>
 
 ### Actividad 6: Ruido Perlin
 
@@ -162,6 +257,7 @@ https://editor.p5js.org/Lula402/full/OGXnLVepe
 
 
 ## Bitácora de reflexión
+
 
 
 
