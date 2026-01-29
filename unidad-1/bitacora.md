@@ -499,6 +499,9 @@ Uno de los que usé fue Lévy Flight, este fue perfecto para los años "1939" qu
 
 **5.**
 
+En una caminata un objeto se mueve paso a paso, y cada nueva posición depende de la anterior, no aparece de la nada, entonces en simulación simulamos comportamientos con todas estas opciones de aleatoriedad.
+
+La carácteristica principal de Lévy Flight, es que camina random en una misma zona y prum, en un momento, uno de esos valores rompe el patrón y salta lejos.
 
 
 
