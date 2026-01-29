@@ -479,6 +479,27 @@ https://editor.p5js.org/Lula402/full/l5qT9mCEu
 
 ## Bitácora de reflexión
 
+**1.**
+
+La diferencia fundamental entre _random()_ y el Ruido Perlin (noise()) es la manera en la que se configura la aleatoriedad. _random()_ es literalmente aleatorio full, todos los números tienen la posibilidad de salir. En noise() la aletoriedad es "delicada", porque noise siempre devuelve un valor entre 0 y 1, el cual va aumentando gradualmente. La perillita que se le pone: noise(perillita) es la que determina que tan brusco rápido se recorren esos valores de 0 a 1. Además noise() tiene continuidad, es decir, si la llamo dos veces seguidas sus valores van a estar relacionados.
+
+**2.**
+
+Una distribución de probabilidad es que posibilidad permito que los valores tengan de existir/salir.
+
+La diferencia visual entre una caminata con distribución uniforme vs una con una distribución normal, es que la uniforme es un caos parejo, porque como todos los valores tienen la misma posibilidad de salir, la caminata es entonces desordenada, pero en su desorden se va rellenando porque todos los valores pueden ir saliendo. La que tiene distribución normal se ve más simetrica y coordinada, ya que uno de los valores tiene más posibilidad de salir sobre los otros, entonces se ve más rellena en ese valor que en los demás.
+
+**3.**
+
+El papel de la aleatoriedad en el arte generativo es primordial, ya que esta es la que permite todos los diferentes outcomes que hacen de cada obra única. Diría que otro de los papeles es que la aleatoriedad pone ese granito de inesperado o de "Imperfección" a un arte hecho con código, que se esperaría fuese "perfecto", es decir, le da ese toque humano.
+
+**4.**
+
+Uno de los que usé fue Lévy Flight, este fue perfecto para los años "1939" que aparecían, ya que justo el efecto que quería era que parecieran "saltando" por ahí y rodearan EE.UU. Lévy Flight permite este efecto al ser una aleatoriedad que en mi caso configuré para favorecer los valores grandes y castigar a los menores. Cuando un valor grande lograba pasar entonces ahí se daba el salto de un 1939.
+
+**5.**
+
+
 
 
 
