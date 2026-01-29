@@ -295,9 +295,190 @@ https://editor.p5js.org/Lula402/full/Y84Aspkrq
 
 ## Bitácora de aplicación 
 
+**EXPLICACIÓN**
 
+Frente a la situación actual del mundo, especificamente la del hemisferio norte, muchas personas han hecho la comparación con el año 1939, el año que empezó la segunda guerra mundial. En EE.UU las situaciones y desiciones que se han tomado ultimamente, se asemejan mucho a las de la época de 1939. Para plasmar esto, quise que estados unidos (los punticos de colores) se vieran encerrados por los "1939", esto representa que estan encerrados en el pasado. Cuando el usuario presiona > viaja al futuro (2026), donde ya EE.UU se libera, explota y palpita, los años 1939 dejan de encerrarlo, esto simboliza una revolución. El usuario con las flechas < > "viaja en el tiempo" y cuando esta en el pasado al mover el mouse cambia el color del año 1939, pintando asi la bandera de alemania.
+
+**CÓDIGO**
+
+```js
+let lienzoPunticos;
+let lienzoExplosion;
+let lienzoAños;
+let BG;
+let azul;
+let rojo;
+let blanco;
+let colorPunticos;
+let año;
+
+function preload() {
+  BG = loadImage("map.png");
+}
+
+function setup() {
+  colorMode(HSB);
+  createCanvas(898, 410);
+  lienzoPunticos = createGraphics(898, 410);
+  lienzoExplosion = createGraphics(898, 410);
+  lienzoAños = createGraphics(898, 410);
+  lienzoPunticos.clear();
+  lienzoAños.clear();
+  BG.filter(INVERT)
+  azul = new Puntico("gauss");
+  rojo = new Puntico("gauss");
+  blanco = new Puntico("gauss");
+  año = new Año(azul);
+}
+
+function draw() {
+  background(0);
+  image(BG, 0, 0);
+
+  let valorSuave = noise(frameCount * 0.08);
+  let escala = map(valorSuave, 0, 1, 0.98, 1.02);
+
+  if (azul.modo == "perlin") {
+    push();
+    translate(width / 2, height / 2);
+    scale(escala);
+    image(lienzoPunticos, -width / 2, -height / 2);
+    image(lienzoExplosion, -width / 2, -height / 2);
+    pop();
+  } else {
+    image(lienzoPunticos, 0, 0);
+    image(lienzoAños, 0, 0);
+  }
+
+  azul.step();
+  azul.show("#3F51B5");
+  rojo.step();
+  rojo.show("#DC0F00");
+  blanco.step();
+  blanco.show("#FFFFFF");
+
+  if (azul.modo == "gauss" && frameCount % 30 == 0) {
+    año.step();
+    año.show();
+  }
+}
+  
+
+class Puntico {
+  constructor(modo) {
+    this.x = width / 2;
+    this.y = height / 2;
+    this.modo = modo;
+    this.tiempo = random(1000);
+    this.radius = 1;
+  }
+
+show(colorPunticos) {
+  if (this.modo == "gauss") {
+    lienzoPunticos.stroke(colorPunticos);
+    lienzoPunticos.strokeWeight(2);
+    lienzoPunticos.point(this.x, this.y);
+  } else {
+    lienzoExplosion.stroke(colorPunticos);
+    lienzoExplosion.strokeWeight(2);
+    lienzoExplosion.point(this.x, this.y);
+  }
+}
+
+  step() {
+    if (this.modo == "gauss") {
+      this.radius = 1;
+      this.x = randomGaussian(110, 15);
+      this.y = randomGaussian(140, 15);
+      let pos = {x: this.x, y: this.y};
+    } else if (this.modo == "perlin") {
+      this.x = random(width);
+      this.y = random(height);
+    }
+  }
+}
+
+class Año {
+  constructor(puntoReferencia) {
+    this.x = width / 2;
+    this.y = height / 2;
+    this.refe = puntoReferencia;
+  }
+
+show() {
+  let colores = ["#FFFFFF", "#FFC107", "#DC0F00"];
+  let indice = floor(map(mouseX, 0, width, 0, colores.length));
+  indice = constrain(indice, 0, colores.length - 1);
+  let colorElegido = colores[indice];
+  
+  lienzoAños.fill(colorElegido);
+  lienzoAños.noStroke(0);
+  lienzoAños.textSize(8);
+  lienzoAños.text("1939", this.x, this.y); 
+}
+
+  step() {
+    this.speed = 5;
+    let salto = pow(levy(), 0.3);
+    let angle = random(TWO_PI);
+    let radioMinimo = 70;
+    let radioMaximo = 75;
+    let stepSize = radioMinimo + salto * this.speed;
+    stepSize = constrain(stepSize, radioMinimo, radioMaximo);
+
+    let dx = stepSize * cos(angle);
+    let dy = stepSize * sin(angle);
+
+    this.x = this.refe.x + dx;
+    this.y = this.refe.y + dy;
+    this.x = constrain(this.x, 0, width);
+    this.y = constrain(this.y, 0, height);
+  }
+}
+
+function levy() {
+  while (true) {
+    let r1 = random(1);
+    let probability = pow(r1, 2);
+    let r2 = random(1);
+
+    if (r2 < probability) {
+      return r1;
+    }
+  }
+}
+
+function keyPressed() {
+  if (keyCode === RIGHT_ARROW) {
+    lienzoAños.clear();
+    azul.modo = "perlin";
+    rojo.modo = "perlin";
+    blanco.modo = "perlin";
+  } else if (keyCode === LEFT_ARROW) {
+    lienzoExplosion.clear();
+    azul.modo = "gauss";
+    rojo.modo = "gauss";
+    blanco.modo = "gauss";
+  }
+}
+```
+
+**LINK**
+
+https://editor.p5js.org/Lula402/full/l5qT9mCEu
+
+**CAPTURA**
+
+<p align = center>
+<img width="602" height="274" alt="image" src="https://github.com/user-attachments/assets/f939a3a1-914b-43fd-ba40-00272cae7684" />
+</p>
+
+<p align = center>
+<img width="602" height="274" alt="image" src="https://github.com/user-attachments/assets/06586e6f-75a5-4d40-9979-a428c07a5559" />
+</p>
 
 ## Bitácora de reflexión
+
 
 
 
