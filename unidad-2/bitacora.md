@@ -10,6 +10,11 @@ El trabajo que más me gustó fue el de Zach Lieberman, se llama **Circles, blob
 
 ### ACTIVIDAD 2
 
+**1. ¿Cómo funciona la suma dos vectores en p5.js?**
+La suma de vectores en p5.js funciona con el método .add, este se encarga de sumar componente con componente. Esto suma X con X, Y con Y, asi sale un nuevo vector (X,Y).
+
+**2. ¿Por qué esta línea position = position + velocity; no funciona?**
+Porque position y velocity no son números, son objetos tipo vector, entonces en js el uso de el operador + no funciona, se debe usar .add para que se sumen los vectores correctamente. 
 
 ### ACTIVIDAD 3
 
@@ -32,5 +37,6 @@ El trabajo que más me gustó fue el de Zach Lieberman, se llama **Circles, blob
 
 
 ## Bitácora de reflexión
+
 
 
