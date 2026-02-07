@@ -11,13 +11,101 @@ El trabajo que más me gustó fue el de Zach Lieberman, se llama **Circles, blob
 ### ACTIVIDAD 2
 
 **1. ¿Cómo funciona la suma dos vectores en p5.js?**
+
 La suma de vectores en p5.js funciona con el método .add, este se encarga de sumar componente con componente. Esto suma X con X, Y con Y, asi sale un nuevo vector (X,Y).
 
 **2. ¿Por qué esta línea position = position + velocity; no funciona?**
+
 Porque position y velocity no son números, son objetos tipo vector, entonces en js el uso de el operador + no funciona, se debe usar .add para que se sumen los vectores correctamente. 
 
 ### ACTIVIDAD 3
 
+**1. ¿Qué tuviste que hacer para hacer la conversión propuesta?**
+
+Para hacer la conversión, todo lo que estuviera calculando manualmente x,y tuve que pasarlo a vectores. Entonces:
+
+- Lo principal fue que en el constructor ahora todo se crea en base a un vector: this.pos = createVector(width / 2, height / 2);
+- Dentro de show(); uso las componentes (x,y) del vector creado para dibujar los puntos: point(this.pos.x, this.pos.y);
+- Dentro del tipo "OG", lo único fue crear otro vector para representar el step: let step = createVector(0, 0); luego este dependiendo del choice al final se usa .add para poder que se note la modificación en el canvas.
+- Para el tipo Gausssian, creé un newX y un newY, son variables en las que se almacena el valor del randomGaussian. Luego este valor va a determinar el (x,y) del vector pos, usando set.
+- El tipo Levý fue el más complicado. Se creó un vector unitario basándose en el ángulo: let step = p5.Vector.fromAngle(angle); Luego multiplicamos este unitario por el stepSize, para poder que sea de un tamaño representativo: step.mult(stepSize); Por último añado ese step listo a pos: this.pos.add(step); 
+
+
+**2. Escribe el código que utilizaste para resolver el ejercicio.**
+
+```js
+let walker;
+let colorWalkers;
+
+function setup() {
+  createCanvas(640, 240);
+  walkerOG = new Walker("OG");
+  walkerLevy = new Walker("levy");
+  walkerGauss = new Walker("gauss");
+  background(255);
+}
+
+function draw() {
+  walkerOG.step();
+  walkerOG.show(0);
+  walkerLevy.step();
+  walkerLevy.show("#F88ACB");
+  walkerGauss.step();
+  walkerGauss.show("#009688");
+}
+
+class Walker {
+  constructor(type) {
+    this.pos = createVector(width / 2, height / 2);
+    this.type = type;
+  }
+
+  show(colorWalkers) {
+    stroke(colorWalkers);
+    point(this.pos.x, this.pos.y);
+  }
+
+  step() {
+    if (this.type === "OG") {
+      let step = createVector(0, 0);
+      const choice = floor(random(4));
+
+      if (choice == 0) step.x = 1;
+      else if (choice == 1) step.x = -1;
+      else if (choice == 2) step.y = -1;
+      else step.y = 1;
+      this.pos.add(step);
+    }
+    if (this.type === "gauss") {
+      let newX = randomGaussian(540, 20);
+      let newY = randomGaussian(120, 20);
+      this.pos.set(newX, newY);
+    }
+
+    if (this.type === "levy") {
+      let angle = random(TWO_PI);
+      let stepSize = levy() * 10;
+      let step = p5.Vector.fromAngle(angle);
+      step.mult(stepSize);
+      this.pos.add(step); 
+      this.pos.x = constrain(this.pos.x, 0, width);
+      this.pos.y = constrain(this.pos.y, 0, height);
+    }
+  }
+}
+
+function levy() {
+  while (true) {
+    let r1 = random(1);
+    let probability = pow(r1, 2);
+    let r2 = random(1);
+
+    if (r2 < probability) {
+      return r1;
+    }
+  }
+}
+```
 
 ### ACTIVIDAD 4
 
@@ -37,6 +125,7 @@ Porque position y velocity no son números, son objetos tipo vector, entonces en
 
 
 ## Bitácora de reflexión
+
 
 
 
