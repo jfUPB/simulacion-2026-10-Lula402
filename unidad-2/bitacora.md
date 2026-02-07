@@ -109,6 +109,34 @@ function levy() {
 
 ### ACTIVIDAD 4
 
+**1. ¿Qué resultado esperas obtener en el programa anterior?**
+
+Espero que primero imprima la posición inicial del vector (6, 9), luego ejecute una función que cambie esos valores y finalmente imprima el resultado para ver si el vector original cambió o se mantuvo igual.
+
+**2. ¿Qué resultado obtuviste?**
+
+Obtuve este mensaje en consola, lo que significa que el resultado esperado si es el obtenido:
+
+```
+p5.Vector Object : [6, 9, 0] 
+p5.Vector Object : [20, 30, 0] 
+Only once 
+```
+
+**3. Recuerda los conceptos de paso por valor y paso por referencia en programación.**
+
+**Paso por valor:** Es cuando le paso a una función una copia del objeto. Si cambio la copia, el original sigue igual.
+
+**Paso por referencia:** Es cuando le paso a la función la dirección de memoria del objeto, entonces lo modifico.
+
+**4. ¿Qué tipo de paso se está realizando en el código?**
+
+Se está relizando paso por referencia, porque estoy afectando al vector original en todo el programa.
+
+**5. ¿Qué aprendiste?**
+
+Refresqué lo que es paso por valor y por referencia. Aprendí que los vectores en p5.js tienen .copy() para poder hacer lo que se hizo pero sin destruir el original.
+
 ### ACTIVIDAD 5
 
 ### ACTIVIDAD 6
@@ -125,6 +153,7 @@ function levy() {
 
 
 ## Bitácora de reflexión
+
 
 
 
