@@ -162,6 +162,52 @@ limit(): Establece un tope máximo a la magnitud de un vector que queramos que n
 
 ### ACTIVIDAD 6
 
+**1.**
+
+```js
+function setup() {
+    createCanvas(400, 400);
+}
+
+function draw() {
+    background(200);
+
+    let v0 = createVector(50, 50);
+    let v1 = createVector(200, 0);
+    let v2 = createVector(0, 200);
+    let v3 = p5.Vector.sub(v2, v1);
+    let v3_origin = p5.Vector.add(v0, v1);
+    let oscilacion = sin(frameCount * 0.02); 
+    let t = map(oscilacion, -1, 1, 0, 1);
+    let v4 = p5.Vector.lerp(v1, v2, t);
+    let rojo = color(255, 0, 0);
+    let azul = color(0, 0, 255);
+    let colorsito = lerpColor(rojo, azul, t);
+    drawArrow(v0, v1, 'red');
+    drawArrow(v0, v2, 'blue');
+    drawArrow(v0, v4, colorsito);
+    drawArrow(v3_origin, v3, 'green');
+}
+
+function drawArrow(base, vec, myColor) {
+    push();
+    stroke(myColor);
+    strokeWeight(3);
+    fill(myColor);
+    translate(base.x, base.y);
+    line(0, 0, vec.x, vec.y);
+    rotate(vec.heading());
+    let arrowSize = 7;
+    translate(vec.mag() - arrowSize, 0);
+    triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+    pop();
+}
+```
+
+**2.**
+
+**3.**
+
 ### ACTIVIDAD 7
 
 1. El motion 101 es como la posición y la velocidad son influenciadas por la aceleración. Geométricamente esto se ve como una particula se desvía en cierta dirección y con cierta velocidad, esta dirección va cambiando y la velocidad aumentando con el tiempo.
@@ -174,6 +220,7 @@ limit(): Establece un tope máximo a la magnitud de un vector que queramos que n
 
 
 ## Bitácora de reflexión
+
 
 
 
