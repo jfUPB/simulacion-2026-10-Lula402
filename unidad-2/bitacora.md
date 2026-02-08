@@ -139,6 +139,27 @@ Refresqué lo que es paso por valor y por referencia. Aprendí que los vectores 
 
 ### ACTIVIDAD 5
 
+**1.** Ambos calculan qué tan largo es el vector (su magnitud). mag() usa la fórmula completa, mientras que magSq() da el resultado sin sacar la raíz cuadrada. magSq() es la más eficiente porque se ahorra el proceso de calcular raíces cuadradas. 
+
+
+**2.**  Sirve para reducir el tamaño del vector a exactamente 1, como un vector unitario, porque manteniene su dirección. Se usa cuando lo único que importa es saber hacia dónde apunta.
+
+**3.** Es una forma de medir qué tanto se alinean dos vectores: si apuntan en la misma dirección, el resultado es positivo; si son perpendiculares, es cero; y si van en direcciones opuestas, es negativo.
+
+**4.**  El de instancia se llama desde el objeto v1.dot(). El propio vector se compara con otro y generalmete almacenamos este resultado que es un número en otra variable.
+
+El estático se llama desde la librería (p5.Vector.dot(v1, v2)). Ambos vectores se comparan entre si y generalmete almacenamos este resultado que es un número en otra variable.
+
+**5.** geométricamente el producto cruz genera un tercer vector.
+Orientación: El nuevo vector es perpendicular (forma un ángulo de 90°) al plano que forman los otros dos. Si los vectores están en el suelo, el producto cruz apunta hacia el techo.
+Magnitud: El tamaño de este nuevo vector es igual al área de plano que forman los dos vectores originales. Entre más abiertos estén los vectores, más grande es el área.
+
+**6.**  Sirve para calcular la distancia entre dos puntos (vectores). Se puede usar para saber si dos objetos están chocando o qué tan lejos están.
+
+**7.** normalize(): Convierte cualquier vector en un "vector unitario". Sirve para saber la dirección sin tener que lidiar con la magnitud.
+
+limit(): Establece un tope máximo a la magnitud de un vector que queramos que no crezca mas de cierto número.
+
 ### ACTIVIDAD 6
 
 ### ACTIVIDAD 7
@@ -146,13 +167,14 @@ Refresqué lo que es paso por valor y por referencia. Aprendí que los vectores 
 1. El motion 101 es como la posición y la velocidad son influenciadas por la aceleración. Geométricamente esto se ve como una particula se desvía en cierta dirección y con cierta velocidad, esta dirección va cambiando y la velocidad aumentando con el tiempo.
 2. 
 
-### ACTIVIDAD 4
+### ACTIVIDAD 8
 
 ## Bitácora de aplicación 
 
 
 
 ## Bitácora de reflexión
+
 
 
 
