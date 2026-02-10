@@ -218,11 +218,7 @@ drawArrow() le hace translate al lienzo para que el origen (0,0) esté donde la 
 
 1. El motion 101 simula movimiento, es como la posición y la velocidad son influenciadas por la aceleración. Geométricamente esto se ve como una particula se desvía en cierta dirección y con cierta velocidad, esta dirección va cambiando y la velocidad aumentando con el tiempo.
 
-<p align=center>
-  
-**La Aceleración cambia la Velocidad, y la Velocidad cambia la Posición.**
-
-</p>
+**<p align=center>La Aceleración cambia la Velocidad, y la Velocidad cambia la Posición.</p>**
 
 **Posición:** un vector que va desde el origen (0,0) hasta donde está el objeto.
 
@@ -244,6 +240,7 @@ En el ejemplo no se está aplicando ninguna aceleración, por lo que la velocida
 
 
 ## Bitácora de reflexión
+
 
 
 
