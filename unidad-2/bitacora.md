@@ -206,12 +206,36 @@ function drawArrow(base, vec, myColor) {
 
 **2.**
 
+**Lerp()** es una forma de encontrar un punto intermedio entre dos extremos que son. En esta actividad se usó para que la flechita se moviera smoothmente entre la roja y la azul, por eso los valores del lerp eran los vectores principales y el **amt** era el tiempo: t ---> _**p5.Vector.lerp(v1, v2, t);**_
+
+**lerpColor()** funciona exactamente igual pero con colores, te da una mezcla entre dos colores y dependiendo del **amt** se determina que tan cerca esta de el color 1 o del color 2. En esta actividad se usó para el color que cambia en la flechita que se mueve, porque la idea es que pase de rojo -> morado -> azul. El **amt** también fue t, entonces si t es chiqui el color está mas cerca de ser rojo, si está en el medio es morado y entre mas grande, está mas cerca de ser azul.
+
 **3.**
+
+drawArrow() le hace translate al lienzo para que el origen (0,0) esté donde la flecha va a empezar. Luego, dibuja la línea desde (0,0) hasta lo que mida el vector, que en este caso lo cambié a 200. Después usa rotate y vec.heading(), los cuales rotan el canvas y heading() que le dice cuántos grados debe girarlo para que la "punta" mire exactamente hacia donde el vector está señalando.
 
 ### ACTIVIDAD 7
 
-1. El motion 101 es como la posición y la velocidad son influenciadas por la aceleración. Geométricamente esto se ve como una particula se desvía en cierta dirección y con cierta velocidad, esta dirección va cambiando y la velocidad aumentando con el tiempo.
+1. El motion 101 simula movimiento, es como la posición y la velocidad son influenciadas por la aceleración. Geométricamente esto se ve como una particula se desvía en cierta dirección y con cierta velocidad, esta dirección va cambiando y la velocidad aumentando con el tiempo.
+
+<p align=center>
+  
+**La Aceleración cambia la Velocidad, y la Velocidad cambia la Posición.**
+
+</p>
+
+**Posición:** un vector que va desde el origen (0,0) hasta donde está el objeto.
+
+**Velocidad:** un vector que se suma a la posición en cada frame. Es el paso que da el objeto o mejor dicho, cuanto avanza.
+
+**Aceleración:** un vector que se suma a la velocidad. Es lo que hace que el vector de velocidad cambie y aumente la rapidez o cambie de dirección.
+
 2. 
+
+En este ejemplo se aplica Motion 101 en el método update() que está en la clase Mover (la bolita). Se utiliza .add() para sumar el vector velocidad al vector posición: this.position.add(this.velocity); Esto hace que en cada frame la bolita de desplaze cuanto el vector de velocidad indique. 
+
+En el ejemplo no se está aplicando ninguna aceleración, por lo que la velocidad es constante y por eso la bolita se mueve siempre al mismo ritmo. La posición si va acumulando las anteriores y va cambiando, por lo que se ve que la bolita avanza, porque cada que se llama update() se le suma la velocidad para hallar su nueva posición y dirección.
+
 
 ### ACTIVIDAD 8
 
@@ -220,6 +244,7 @@ function drawArrow(base, vec, myColor) {
 
 
 ## Bitácora de reflexión
+
 
 
 
