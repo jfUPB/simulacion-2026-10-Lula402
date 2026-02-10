@@ -235,11 +235,95 @@ En el ejemplo no se está aplicando ninguna aceleración, por lo que la velocida
 
 ### ACTIVIDAD 8
 
+**bolita0.aceleracionConstante();** esta se mueve a una velocidad constante y va avanzando diagonalmente. Aparece por arriba y va bajando empujandose un poquito hacia la derecha suavemente.
+
+**bolita1.aceleracionAleatoria();** observo que parece una mosquita, porque se parece mucho a la forma en la que ellas se mueven. Esta bolita tiene un temblorsito y va caminando por todo el canvas sin ningun orden.
+
+**bolita2.aceleracionMouse();** esta me gusta mucho porque es como si tuviera una pelotica con un nilon que estira en mi mano. Cuando muevo el mouse la bolita amarilla me intenta seguir y si lo dejo quieto se queda a mi alrededor con un movimiento parecido al de un péndulo.
+
+```js
+let bolita0;
+let bolita1;
+let bolita2;
+
+function setup() {
+  createCanvas(600, 600);
+  bolita0 = new Bolita('rgb(180,180,249)');
+  bolita1 = new Bolita('#FF8FB5');
+  bolita2 = new Bolita('#FFE38F');
+}
+
+function draw() {
+  background(0);
+  
+  bolita0.aceleracionConstante();
+  bolita1.aceleracionAleatoria();
+  bolita2.aceleracionMouse();
+
+  bolita0.update();
+  bolita0.checkEdges();
+  bolita0.show();
+  bolita1.update();
+  bolita1.checkEdges();
+  bolita1.show();
+  bolita2.update();
+  bolita2.checkEdges();
+  bolita2.show();
+}
+
+class Bolita {
+  constructor(c) {
+    this.pos = createVector(width / 2, height / 2);
+    this.vel = createVector(0, 0);
+    this.acc = createVector(0, 0);
+    this.topSpeed = 5; 
+    this.colorsito = c
+  }
+
+  update() {
+    this.vel.add(this.acc);   
+    this.vel.limit(this.topSpeed); 
+    this.pos.add(this.vel);   
+    this.acc.mult(0);         
+  }
+
+  aceleracionConstante() {
+    this.acc = createVector(0.01, 0.05); 
+  }
+
+  aceleracionAleatoria() {
+    this.acc = p5.Vector.random2D().mult(0.2);
+  }
+
+  aceleracionMouse() {
+    let mouse = createVector(mouseX, mouseY);
+    let direccion = p5.Vector.sub(mouse, this.pos);
+    direccion.setMag(0.2); 
+    this.acc = direccion;
+  }
+
+  show() {
+    fill(this.colorsito);
+    circle(this.pos.x, this.pos.y, 30);
+  }
+
+  checkEdges() {
+    if (this.pos.x > width) this.pos.x = 0;
+    if (this.pos.x < 0) this.pos.x = width;
+    if (this.pos.y > height) this.pos.y = 0;
+    if (this.pos.y < 0) this.pos.y = height;
+  }
+}
+```
+
+
+
 ## Bitácora de aplicación 
 
 
 
 ## Bitácora de reflexión
+
 
 
 
