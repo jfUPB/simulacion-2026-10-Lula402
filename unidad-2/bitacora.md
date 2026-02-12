@@ -549,6 +549,105 @@ https://editor.p5js.org/Lula402/full/_YaAencOa
 
 ## Bitácora de reflexión
 
+**1. CONCEPTO**
+El concepto de esta actividad fue full exploración. En las actividades de esta unidad hice más que todo trabajos con bolitas, entonces para variar quise hacer líneas locas.
+
+**2. CÓDIGO**
+
+```js
+let lineas = [];
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  colorMode(HSB);
+  for (let i = 0; i < 500; i++) {
+    lineas.push(new Linea(random(width), random(height)));
+  }
+}
+
+function draw() {
+  background(0);
+  for (let l of lineas) {
+    l.interactuar(lineas);
+    l.update();
+    l.display();
+  }
+}
+
+class Linea {
+  constructor(x, y) {
+    this.pos = createVector(x, y);
+    this.vel = p5.Vector.random2D();
+    this.acc = createVector(0, 0);
+    this.largo = 80;
+    this.angulo = this.vel.heading();
+  }
+
+  update() {
+    this.vel.add(this.acc);
+    //this.vel.mult(1);
+    this.vel.limit(2);
+    this.pos.add(this.vel);
+    this.acc.mult(0);
+    this.angulo = this.vel.heading();
+    this.checkEdges();
+  }
+
+  applyForce(fuerza) {
+    this.acc.add(fuerza);
+  }
+
+  interactuar(otras) {
+    for (let otra of otras) {
+      if (otra !== this) {
+        let d = p5.Vector.dist(this.pos, otra.pos);
+        if (d > 0 && d < 100) {
+          let fuerza = p5.Vector.sub(this.pos, otra.pos);
+          fuerza.normalize();
+
+          if (d < 25) {
+            fuerza.mult(0.8);
+          } else {
+            fuerza.mult(-0.6);
+          }
+          this.applyForce(fuerza);
+        }
+      }
+    }
+  }
+
+  display() {
+    stroke(degrees(this.angulo) % 360, 100, 100);
+    push();
+    translate(this.pos.x, this.pos.y);
+    rotate(this.angulo);
+    line(-this.largo / 2, 0, this.largo / 2, 0);
+    pop();
+  }
+
+  checkEdges() {
+    if (this.pos.x > width || this.pos.x < 0) {
+      this.vel.x *= -1;
+    }
+    if (this.pos.y > height || this.pos.y < 0) {
+      this.vel.y *= -1;
+    }
+  }
+}
+```
+
+**3. LINK**
+https://editor.p5js.org/Lula402/full/yqf0U5ENe
+
+**4. SS**
+
+<p align=center>
+<img width="104" height="98" alt="image" src="https://github.com/user-attachments/assets/5ec166eb-d6e7-4a52-b88c-9c98ff06f9cb" />
+</p>
+
+<p align=center>
+<img width="431" height="307" alt="image" src="https://github.com/user-attachments/assets/e52e5bf4-e106-4065-99f8-ddb20dc6f770" />
+</p>
 
 
 
