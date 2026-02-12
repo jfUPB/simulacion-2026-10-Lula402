@@ -320,9 +320,235 @@ class Bolita {
 
 ## Bitácora de aplicación 
 
+**1. CONCEPTO**
 
+Esta obra generativa es en honor a mi grupo de amigas. Somos 6, y cada una de nosotras es muy diferente, pero nos complementamos y hacemos que el grupo sea tan agradable como es. A cada una de las integrantes le corresponde un color que cada una escogió porque se siente representada. Los colores del grupo cambian a sus colores complementarios respectivamente cada que se encuentre con otro grupo de otra amiga, además el tamaño tambien aumenta al chocarse con los grupos. Cada grupo de partículas (cada persona) tiene un comportamiento único, el cual incluye una velocidad, aceleración e interacción específica. A modo de interactividad por medio del teclado con los numeros del 1 al 6, se puede escoger que "personaje" eres, y ese grupo de particulas es atraido o persigue al mouse.
+
+
+**2. CÓDIGO**
+
+```js
+let particulas = [];
+let nombresAmigas = ["Mari", "Vale", "Isa", "Lala", "Saris", "Lula"];
+let quienSoy = "Mari";
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  colorMode(HSB, 360, 100, 100, 100);
+  for (let nombre of nombresAmigas) {
+    for (let i = 0; i < 25; i++) {
+      particulas.push(new Bolita(nombre));
+    }
+  }
+}
+
+function draw() {
+  background(0);
+  for (let b of particulas) {
+    b.update(particulas);
+    b.display();
+  }
+}
+
+class Bolita {
+  constructor(nombre) {
+    this.nombre = nombre;
+    this.pos = createVector(random(width), random(height));
+    this.vel = createVector(random(-1, 1), random(-1, 1));
+    this.acc = createVector(0, 0);
+
+    let perfil = this.obtenerHSB(nombre);
+
+    this.h = perfil.h;
+    this.s = perfil.s;
+    this.b = perfil.b;
+
+    this.colorBase = color(this.h, this.s, this.b);
+
+    let tonoOpuesto = (this.h + 180) % 360;
+    this.colorComplementario = color(tonoOpuesto, this.s, this.b);
+
+    this.colorActual = this.colorBase;
+    this.distanciaAlMasCercano = 150;
+  }
+
+  obtenerHSB(n) {
+    if (n === "Mari") return { h: 5, s: 92, b: 62 };
+    if (n === "Vale") return { h: 191, s: 100, b: 78 };
+    if (n === "Saris") return { h: 190, s: 69, b: 71 };
+    if (n === "Isa") return { h: 283, s: 26, b: 82 };
+    if (n === "Lala") return { h: 282, s: 87, b: 62 };
+    if (n === "Lula") return { h: 210, s: 24, b: 96 };
+    return { h: 0, s: 0, b: 100 };
+  }
+  update(lista) {
+    if (this.nombre === quienSoy) {
+      this.atraerAlMouse();
+      this.detectarOtroSoloParaColor(lista);
+    } else {
+      this.comportamientoGrupal(lista);
+      this.comportamiento();
+    }
+    let cantidadMezcla = map(this.distanciaAlMasCercano, 0, 20, 1, 0, true);
+    let colorObjetivo = lerpColor(
+      this.colorBase,
+      this.colorComplementario,
+      cantidadMezcla
+    );
+    this.colorActual = lerpColor(this.colorActual, colorObjetivo, 0.1);
+    this.vel.add(this.acc);
+    this.pos.add(this.vel);
+    this.acc.mult(0);
+    this.vel.mult(0.98);
+    this.checkEdges();
+  }
+
+  atraerAlMouse() {
+    let mouse = createVector(mouseX, mouseY);
+    let fuerza = p5.Vector.sub(mouse, this.pos);
+    fuerza.setMag(0.5);
+    this.acc.add(fuerza);
+  }
+
+  comportamientoGrupal(todasLasBolitas) {
+    let promedio = createVector(0, 0);
+    let contador = 0;
+    let distanciaDeseada = 10;
+    this.distanciaAlMasCercano = 100;
+    for (let otra of todasLasBolitas) {
+      let d = dist(this.pos.x, this.pos.y, otra.pos.x, otra.pos.y);
+      if (otra.nombre === this.nombre && otra !== this) {
+        if (d > 0 && d < 100) {
+          if (d < distanciaDeseada) {
+            let huye = p5.Vector.sub(this.pos, otra.pos);
+            huye.setMag(0.5);
+            this.acc.add(huye);
+          } else {
+            promedio.add(otra.pos);
+            contador++;
+          }
+        }
+      } else if (otra.nombre !== this.nombre) {
+        if (d < this.distanciaAlMasCercano) {
+          this.distanciaAlMasCercano = d;
+        }
+      }
+    }
+
+    if (contador > 0) {
+      promedio.div(contador);
+      let fuerza = p5.Vector.sub(promedio, this.pos);
+      fuerza.setMag(0.5);
+      this.acc.add(fuerza);
+    }
+  }
+
+  comportamiento() {
+    switch (this.nombre) {
+      case "Saris":
+        let saris = p5.Vector.random2D();
+        saris.mult(0.2);
+        this.acc.add(saris);
+        break;
+      case "Isa":
+        let mouse = createVector(mouseX, mouseY);
+        let d = dist(this.pos.x, this.pos.y, mouse.x, mouse.y);
+        if (d < 200) {
+          let fuerza = p5.Vector.sub(mouse, this.pos);
+          fuerza.setMag(0.2);
+          this.acc.sub(fuerza);
+        }
+        break;
+      case "Mari":
+        let ciclo = frameCount % 200;
+        if (ciclo < 150) {
+          let suave = p5.Vector.random2D();
+          suave.mult(0.1);
+          this.acc.add(suave);
+        } else {
+          this.vel.mult(0.9);
+        }
+        break;
+      case "Lala":
+        let lalas = p5.Vector.random2D();
+        lalas.mult(0.1);
+        this.acc.add(lalas);
+        break;
+      case "Vale":
+        let fuerzaVale = this.vel.copy();
+        fuerzaVale.setMag(0.08);
+        this.acc.add(fuerzaVale);
+        break;
+      case "Lula":
+        let pasoNormal = p5.Vector.random2D();
+        pasoNormal.mult(0.1);
+        this.acc.add(pasoNormal);
+
+        if (random(1) < 0.001) {
+          let salto = p5.Vector.random2D();
+          salto.mult(5);
+          this.acc.add(salto);
+        }
+        break;
+      default:
+        atraerAlMouse();
+    }
+  }
+
+  detectarOtroSoloParaColor(lista) {
+    this.distanciaAlMasCercano = 100;
+    for (let otra of lista) {
+      if (otra.nombre !== this.nombre) {
+        let d = dist(this.pos.x, this.pos.y, otra.pos.x, otra.pos.y);
+        if (d < this.distanciaAlMasCercano) {
+          this.distanciaAlMasCercano = d;
+        }
+      }
+    }
+  }
+
+  display() {
+    noStroke();
+    fill(this.colorActual);
+    let tamaño = map(this.distanciaAlMasCercano, 0, 30, 8, 4, true);
+    ellipse(this.pos.x, this.pos.y, tamaño, tamaño);
+  }
+
+  checkEdges() {
+    if (this.pos.x > width) this.pos.x = 0;
+    if (this.pos.x < 0) this.pos.x = width;
+    if (this.pos.y > height) this.pos.y = 0;
+    if (this.pos.y < 0) this.pos.y = height;
+  }
+}
+
+function keyPressed() {
+  if (key === "1") quienSoy = "Saris";
+  if (key === "2") quienSoy = "Isa";
+  if (key === "3") quienSoy = "Mari";
+  if (key === "4") quienSoy = "Lala";
+  if (key === "5") quienSoy = "Vale";
+  if (key === "6") quienSoy = "Lula";
+}
+
+```
+
+**3. LINK**
+
+https://editor.p5js.org/Lula402/full/_YaAencOa
+
+**4. SS**
+
+<p align= center>
+<img width="124" height="100" alt="image" src="https://github.com/user-attachments/assets/77c008c5-3171-4fa9-a27a-dca7b0ee88a1" />
+</p>
+
+<p align= center>
+<img width="130" height="121" alt="image" src="https://github.com/user-attachments/assets/e677c02a-c4de-4ff8-8ceb-3cab1dab93a7" />
+</p>
 
 ## Bitácora de reflexión
+
 
 
 
