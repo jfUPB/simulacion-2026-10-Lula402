@@ -37,13 +37,13 @@ https://editor.p5js.org/Lula402/full/_JOzHPjfC
 
 https://editor.p5js.org/Lula402/full/3uuUFkKPr
 
-<p align=center><img width="704" height="328" alt="image" src="https://github.com/user-attachments/assets/cf44b028-d352-4f5c-8ea5-862919ec8d5c" /></p>
+<p align=center><img width="959" height="384" alt="image" src="https://github.com/user-attachments/assets/75cd9973-6657-49cd-b45e-bb2ee5d18a1f" /></p>
 
 **Atracción gravitacional**
 
-https://editor.p5js.org/Lula402/full/3uuUFkKPr
+[https://editor.p5js.org/Lula402/full/3uuUFkKPr](https://editor.p5js.org/Lula402/full/ndKK3Vg3l)
 
-<p align=center> </p>
+<p align=center><img width="959" height="354" alt="image" src="https://github.com/user-attachments/assets/58bee96b-d82e-4555-b45c-9baf2cbb0dcc" /></p>
 
 
 ## Bitácora de aplicación 
@@ -225,6 +225,7 @@ https://editor.p5js.org/Lula402/full/GxrUIC_XL
 
 
 ## Bitácora de reflexión
+
 
 
 
