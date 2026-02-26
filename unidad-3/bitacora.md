@@ -15,6 +15,15 @@ Ya poniendome asi más pesonal, me pone triste saber que, aprendo un poco más l
 
 **ACTIVIDAD 2**
 
+1. ¿Por qué es necesario multiplicar la aceleración por cero en cada frame?
+Es necesario porque es la manera de resetear la aceleración, de modo que en cada frame se calcule desde el inicio todas las fuerzas que están afectando al objeto y no hayan valores de frames anteriores interfiriendo con los calculos del motion 101.
+Es como cuando a propósito limpiamos el background en cada frame, para empezar con un canvas limpio cada vez.
+
+2. ¿Por qué se multiplica por cero justo al final de update()?
+Debe ser justo al final, porque en la línea ```this.velocity.add(this.acceleration);``` estamos actualizando la velocidad al sumarle la aceleración, pero si hacemos ```this.acceleration.mult(0);``` antes de, pues entonces la velocidad va a ser constante. Toca tener en cuenta que si la velocidad es constante la posición tampoco va a verse afectada por esto.
+
+3. ¿Qué ves raro? ¿Qué implica esto?
+Esta mal porque al dividir de esa manera lo que estamos haciendo es dividir la force que estamos usando en todo el programa entre 10, pero no podemos hacer eso porque se nos dañan los cálculos. Lo que debemos hacer es usar una estática asi: ```let f = p5.Vector.div(force, 10);``` para que el resultado lo guardemos en f, sin dañar a force.
 
 **ACTIVIDAD 3**
 
@@ -196,5 +205,6 @@ https://editor.p5js.org/Lula402/full/GxrUIC_XL
 
 
 ## Bitácora de reflexión
+
 
 
