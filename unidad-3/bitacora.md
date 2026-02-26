@@ -27,9 +27,29 @@ Esta mal porque al dividir de esa manera lo que estamos haciendo es dividir la f
 
 **ACTIVIDAD 3**
 
+**FRICCIÓN**
+
+https://editor.p5js.org/Lula402/full/_JOzHPjfC
+
+<p align=center><img width="959" height="384" alt="image" src="https://github.com/user-attachments/assets/8c037a44-523b-4b5f-9e2b-bef6077641c6" /></p>
+
+**Resistencia a fluidos**
+
+https://editor.p5js.org/Lula402/full/3uuUFkKPr
+
+<p align=center><img width="704" height="328" alt="image" src="https://github.com/user-attachments/assets/cf44b028-d352-4f5c-8ea5-862919ec8d5c" /></p>
+
+**Atracción gravitacional**
+
+https://editor.p5js.org/Lula402/full/3uuUFkKPr
+
+<p align=center> </p>
+
+
 ## Bitácora de aplicación 
 
 **CONCEPTO**
+
 El concepto de esta obra generativa relata como la vida y los procesos no son lineales, hay ups and downs, y como nos movemos por cada momento de la vida de manera distinta. Para esta obra implementé distribución normal (randomGaussian), apliqué fuerzas externas (el wind de las flechas), fuerzas del ambiente (gravedad) y fuerzas reactivas (el drag de las franjas). El motion 101 fue un elemento clave en el movimiento del mover, que representa el usuario. 
 
 Las franjas son de diferentes tonos y con diferente opacidad, en representación a que no todos los momento de la vida son iguales y en algunos dejamos más rastro que en otros.
@@ -205,6 +225,7 @@ https://editor.p5js.org/Lula402/full/GxrUIC_XL
 
 
 ## Bitácora de reflexión
+
 
 
 
