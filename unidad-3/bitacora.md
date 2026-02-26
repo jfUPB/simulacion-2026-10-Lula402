@@ -226,9 +226,168 @@ https://editor.p5js.org/Lula402/full/GxrUIC_XL
 
 ## Bitácora de reflexión
 
-fuerza, aceleración, velocidad y posición
-La posición de un objeto se ve afectada por su velocidad, ya que, la posición va a ir variando según la dirección de la velocidad y que tanto avanza según la magnitud de la velocidad. Ahora, la velocidad está influenciada por la aceleración, ya que si no hay aceleración (acc=0) la velocidad es constante, mientras que si sí tiene un valor, la velocidad va a ir aumentando o disminuyendo en función del valor (pequeño o grande) de la aceleración, es como su tasa de cambio. Luego, cuando vamos a revisar que es la aceleración, esta es la sumatoria de las fuerzas que están afectando a ese objeto, entonces por ello es que cuando antes no jugabamos con las fuerzas, la aceleración de nuestro sistema ficticio quedaba a nuestra decisión, pero ahora con las fuerzas involucradas, todas 
+**fuerza, aceleración, velocidad y posición**
+
+La posición de un objeto se ve afectada por su velocidad, ya que, la posición va a ir variando según la dirección de la velocidad y que tanto avanza según la magnitud de la velocidad. Ahora, la velocidad está influenciada por la aceleración, ya que si no hay aceleración (acc=0) la velocidad es constante, mientras que si sí tiene un valor, la velocidad va a ir aumentando o disminuyendo en función del valor (pequeño o grande) de la aceleración, es como su tasa de cambio. Luego, cuando vamos a revisar que es la aceleración, esta es la sumatoria de las fuerzas que están afectando a ese objeto, entonces por ello es que cuando antes no jugabamos con las fuerzas, la aceleración de nuestro sistema ficticio quedaba a nuestra decisión, pero ahora con las fuerzas involucradas, todas aportan a la aceleración del objeto.
 
 
+```js
+class guides {
+  constructor() {
+    this.position = createVector(random(0,windowWidth), random(0,windowHeight));
+    this.mass = 10;
+    this.G = 1;
+    this.azul = color();
+    
+    this.colorsCalder = [azul,rojo,amarillo];
+    this.guideColor = random(colorsCalder);
+  }
 
+  show() {
+    fill(this.guideColor, 50, 100, 100);
+    noStroke();
+    circle(this.position.x, this.position.y, 200, 20);
+  }
+
+  attrack(m) {
+    let force = p5.Vector.sub(this.position, m.position);
+    let d = constrain(force.mag(), 5, 25);
+    let strength = (this.G * this.mass * m.mass) / (d * d);
+    force.setMag(strength);
+    return force;
+  }
+}
+```
+
+```js
+class Mover {
+  constructor() {
+    this.mass = 5;
+    this.position = createVector(width / 2, 30);
+    this.velocity = createVector(0, 0);
+    this.acceleration = createVector(0, 0);
+    this.arrows = createVector(width / 2, height / 2);
+    this.topspeed = 5;
+  }
+
+  applyForce(force) {
+    let f = p5.Vector.div(force, this.mass);
+    this.acceleration.add(f);
+  }
+
+  update() {
+    this.velocity.add(this.acceleration);
+    this.velocity.limit(this.topspeed);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+  }
+
+  show() {
+    noStroke();
+    strokeWeight(2);
+    fill(0);
+    ellipse(this.position.x, this.position.y, 2, 2);
+  }
+
+  checkEdges() {
+    if (this.position.x > width) {
+      this.position.x = width;
+      this.velocity.x *= -1;
+    } else if (this.position.x < 0) {
+      this.velocity.x *= -1;
+      this.position.x = 0;
+    }
+    if (this.position.y > height) {
+      this.velocity.y *= -1;
+      this.position.y = height;
+    } else if (this.position.y < 0) {
+      this.velocity.y *= -1;
+      this.position.y = 0;
+    }
+  }
+}
+
+```
+
+```js
+let port;
+let connectBtn;
+let moverAWSD;
+let moverArrows;
+let windAWSD;
+let windArrows;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  colorMode(HSB, 360, 100, 100, 100);
+  moverAWSD = new Mover();
+  moverArrows = new Mover();
+  windAWSD = createVector(0, 0);
+  windArrows = createVector(0, 0);
+}
+
+function draw() {
+  connect();
+  windAWSD.set(0, 0);
+  windArrows.set(0, 0);
+  keys();
+
+  //let gravity = createVector(0, 0.1);
+  //moverAWSD.applyForce(gravity);
+  //moverArrows.applyForce(gravity);
+
+  moverAWSD.applyForce(windAWSD);
+  moverArrows.applyForce(windArrows);
+  moverAWSD.update();
+  moverAWSD.show();
+  moverAWSD.checkEdges();
+  moverArrows.update();
+  moverArrows.show();
+  moverArrows.checkEdges();
+}
+
+function keys() {
+  if (keyIsDown(LEFT_ARROW)) {
+    console.log("LEFT_ARROW");
+    windArrows.add(-0.1, 0);
+  }
+  if (keyIsDown(RIGHT_ARROW)) {
+    windArrows.add(0.1, 0);
+  }
+  if (keyIsDown(UP_ARROW)) {
+    console.log("UP_ARROW");
+    windArrows.add(0, -0.1);
+  }
+  if (keyIsDown(DOWN_ARROW)) {
+    console.log("DOWN_ARROW");
+    windArrows.add(0, 0.1);
+  }
+  if (keyIsDown(65)) {
+    console.log("A");
+    windAWSD.add(-0.1, 0);
+  }
+  if (keyIsDown(68)) {
+    console.log("D");
+    windAWSD.add(0.1, 0);
+  }
+  if (keyIsDown(87)) {
+    console.log("W");
+    windAWSD.add(0, -0.1);
+  }
+  if (keyIsDown(83)) {
+    console.log("S");
+    windAWSD.add(0, 0.1);
+  }
+}
+
+function connect(){
+  if (!port.opened()) {
+        connectBtn.html('Connect to micro:bit');
+    }
+    else {
+        connectBtn.html('Disconnect');
+    }
+}
+
+```
 
