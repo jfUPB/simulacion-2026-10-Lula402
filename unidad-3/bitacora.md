@@ -226,6 +226,8 @@ https://editor.p5js.org/Lula402/full/GxrUIC_XL
 
 ## Bitácora de reflexión
 
+fuerza, aceleración, velocidad y posición
+La posición de un objeto se ve afectada por su velocidad, ya que, la posición va a ir variando según la dirección de la velocidad y que tanto avanza según la magnitud de la velocidad. Ahora, la velocidad está influenciada por la aceleración, ya que si no hay aceleración (acc=0) la velocidad es constante, mientras que si sí tiene un valor, la velocidad va a ir aumentando o disminuyendo en función del valor (pequeño o grande) de la aceleración, es como su tasa de cambio. Luego, cuando vamos a revisar que es la aceleración, esta es la sumatoria de las fuerzas que están afectando a ese objeto, entonces por ello es que cuando antes no jugabamos con las fuerzas, la aceleración de nuestro sistema ficticio quedaba a nuestra decisión, pero ahora con las fuerzas involucradas, todas 
 
 
 
