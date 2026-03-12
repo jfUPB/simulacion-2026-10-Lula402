@@ -527,9 +527,29 @@ function mouseReleased() {
 
 ## Bitácora de aplicación 
 
+**CONCEPTO**
+
+**LINK**
+
+https://editor.p5js.org/Lula402/full/JDCOY-fB6
+**CODIGO**
+
+sombra.js
+```js
+
+```
+
+sketch.js
+```js
+
+```
+
+**SS**
+<img width="886" height="367" alt="image" src="https://github.com/user-attachments/assets/a56d7f9c-6f52-4242-8c36-a402b4a2bf44" />
 
 
 ## Bitácora de reflexión
+
 
 
 
