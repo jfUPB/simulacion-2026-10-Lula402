@@ -651,6 +651,9 @@ function checkEdges(s) {
 
 ## Bitácora de reflexión
 
+<p align= center>
+<img width="803" height="275" alt="image" src="https://github.com/user-attachments/assets/5f814744-f37d-4db2-8809-806c1348962b" />
+</p>
 
 
 
