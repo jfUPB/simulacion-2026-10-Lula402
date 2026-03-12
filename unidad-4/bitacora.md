@@ -128,8 +128,127 @@ function checkEdges(obj) {
 
 **ACTIVIDAD 4**
 
+1.  ¿Qué modificación hay que hacer al motion 101 cuando se quiere agregar fuerzas acumulativas?
 
+La modificación es muy simple, sería solo quitar la línea donde reseteamos la aceleración y decimos acc.mult(0), al quitarla ya quedamos con fuerzas acumulativas porque en cada frame ya no empezamos sin fuerzas y a calcular desde 0, sino que las fuerzas del frame anterior van a estar ahí y van a afectar en los nuevos cálculos.
 
+2. <img width="221" height="155" alt="image" src="https://github.com/user-attachments/assets/e8399932-8059-4424-be27-50c7ed346054" />
+
+3. ![attractor](https://github.com/user-attachments/assets/08254e72-c9ec-413c-847b-91e4f34ad782)
+
+ATTRACTOR
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+class Attractor {
+  constructor() {
+    this.position = createVector(width / 2, height / 2);
+    this.mass = 20;
+    this.G = 1;
+    this.dragging = false;
+    this.rollover = false;
+  }
+
+  attract(mover) {
+    // Calculate direction of force
+    let force = p5.Vector.sub(this.position, mover.position);
+    // Distance between objects
+    let distance = force.mag();
+    // Limiting the distance to eliminate "extreme" results for very close or very far objects
+    distance = constrain(distance, 5, 25);
+
+    // Calculate gravitional force magnitude
+    let strength = (this.G * this.mass * mover.mass) / (distance * distance);
+    // Get force vector --> magnitude * direction
+    force.setMag(strength);
+    return force;
+  }
+
+  // Method to display
+  display() {
+    ellipseMode(CENTER);
+    stroke(0);
+    if (this.dragging) {
+      fill(110, 20, 200);
+    } else if (this.rollover) {
+      fill(0);
+    } else {
+      fill(220, 240, 10);
+    }
+    ellipse(this.position.x, this.position.y, this.mass * 2);
+  }
+
+  handleRollover(mx, my) {
+    let d = dist(mx, my, this.position.x, this.position.y);
+    if (d < this.mass) {
+      this.rollover = true;
+    } else {
+      this.rollover = false;
+    }
+  }
+
+  handlePress(mx, my) {
+    let d = dist(mx, my, this.position.x, this.position.y);
+    if (d < this.mass) {
+      this.dragging = true;
+    }
+  }
+
+  handleRelease() {
+    this.dragging = false;
+  }
+
+  handleDrag(mx, my) {
+    if (this.dragging) {
+      this.position.x = mx;
+      this.position.y = my;
+    }
+  }
+}
+```
+SKETCH
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+let movers = [];
+let attractor;
+
+function setup() {
+  createCanvas(640, 240);
+
+  for (let i = 0; i < 20; i++) {
+    movers.push(new Mover(random(width), random(height), random(0.1, 2)));
+  }
+  attractor = new Attractor();
+}
+
+function draw() {
+  background(255);
+  attractor.handleRollover(mouseX, mouseY);
+  attractor.handleDrag(mouseX, mouseY);  
+  attractor.display();
+
+  for (let i = 0; i < movers.length; i++) {
+    let force = attractor.attract(movers[i]);
+    movers[i].applyForce(force);
+
+    movers[i].update();
+    movers[i].show();
+  }
+}
+
+function mousePressed() {
+  attractor.handlePress(mouseX, mouseY);
+}
+
+function mouseReleased() {
+  attractor.handleRelease();
+}
+```
 **ACTIVIDAD 5**
 **ACTIVIDAD 6**
 **ACTIVIDAD 7**
@@ -141,5 +260,6 @@ function checkEdges(obj) {
 
 
 ## Bitácora de reflexión
+
 
 
