@@ -528,27 +528,129 @@ function mouseReleased() {
 ## Bitácora de aplicación 
 
 **CONCEPTO**
+El usuario tiene el control de la luz, es una antorcha. Este se encuentra rodeado de oscuridad y sombras, si se queda quieto, la oscuridad lo alcanza y lo cubre, si se mueve espanta a las sombras.
 
 **LINK**
 
 https://editor.p5js.org/Lula402/full/JDCOY-fB6
+
 **CODIGO**
 
 sombra.js
 ```js
+class Sombra {
+  constructor() {
+    this.pos = createVector(random(width), random(height));
+    this.vel = createVector(0, 0);
+    this.acc = createVector(0, 0);
+    this.topSpeed = 10;
+    this.mass = constrain(randomGaussian(20, 8), 5, 50); 
+    this.angle = random(TWO_PI);
+    this.angleVel = random(0.02, 0.05);
+  }
 
+  applyForce(fuerza) {
+    let f = p5.Vector.div(fuerza, this.mass);
+    this.acc.add(f);
+  }
+
+  update() {
+    this.vel.add(this.acc);
+    this.vel.limit(this.topSpeed);
+    this.pos.add(this.vel); 
+    this.vel.mult(0.94);
+    this.acc.mult(0);
+    
+    this.angle += this.angleVel;
+  }
+  
+  show() {
+    let pulso = map(sin(this.angle), -1, 1, 0.8, 1.2);
+    let tam = this.mass * pulso;
+    
+    push();
+    stroke(0, 0, 0, 30);
+    strokeWeight(1);
+    line(width/2, height/2, this.pos.x, this.pos.y);
+    noStroke();
+    fill(20, 20, 20, 80); 
+    circle(this.pos.x, this.pos.y, tam * 2);
+    pop();
+  }
+}
 ```
 
 sketch.js
 ```js
+let sombras = [];
 
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  for (let i = 0; i < 500; i++) {
+    sombras.push(new Sombra());
+  }
+  colorMode(RGB, 255);
+}
+
+function draw() {
+  background(100, 100, 100, 15);
+
+  let mousePos = createVector(mouseX, mouseY);
+  let mouseSpeed = dist(mouseX, mouseY, pmouseX, pmouseY);
+
+  for (let s of sombras) {
+    let light = p5.Vector.sub(s.pos, mousePos);
+    let dist = light.mag();
+
+    if (dist < 150) {
+      let fuerza = map(dist, 0, 150, 15, 0);
+      light.setMag(fuerza);
+      s.applyForce(light);
+    }
+
+    let centro = createVector(width/2, height/2);
+    let retorno = p5.Vector.sub(centro, s.pos);
+    retorno.mult(0.001); 
+    s.applyForce(retorno);
+    s.applyForce(retorno);
+    s.update();
+    s.show();
+    checkEdges(s);
+  }
+  let colorRojo = color(200, 20, 0); // Rojo
+  let colorAmarillo = color(255, 240, 50); // Amarillo
+
+  let ratio = map(mouseSpeed, 0, 20, 0, 1);
+
+  let colorAntorcha = lerpColor(colorRojo, colorAmarillo, ratio);
+
+  noStroke();
+  fill(red(colorAntorcha), green(colorAntorcha), blue(colorAntorcha), 150);
+  circle(mouseX, mouseY, 35);
+  fill(red(colorAntorcha), green(colorAntorcha), blue(colorAntorcha), 50);
+  circle(mouseX, mouseY, 60);
+}
+
+function checkEdges(s) {
+  if (s.pos.x > width) s.pos.x = 0;
+  if (s.pos.x < 0) s.pos.x = width;
+  if (s.pos.y > height) s.pos.y = 0;
+  if (s.pos.y < 0) s.pos.y = height;
+}
 ```
 
 **SS**
-<img width="886" height="367" alt="image" src="https://github.com/user-attachments/assets/a56d7f9c-6f52-4242-8c36-a402b4a2bf44" />
 
+<p align= center>
+<img width="886" height="367" alt="image" src="https://github.com/user-attachments/assets/a56d7f9c-6f52-4242-8c36-a402b4a2bf44" />
+</p>
+
+<p align= center>
+<img width="452" height="317" alt="image" src="https://github.com/user-attachments/assets/2df80383-9de0-4296-b838-b462cfe8bb59" />
+</p>
 
 ## Bitácora de reflexión
+
 
 
 
