@@ -306,8 +306,95 @@ function draw() {
 
 **ACTIVIDAD 7**
 
+<p align=center>
+<img width="254" height="162" alt="image" src="https://github.com/user-attachments/assets/4b409de6-f120-4faf-9fd9-60eb151af1ee" /> </p>
+
+**LINK**
+
+[https://editor.p5js.org/Lula402/full/H2S7G_ePT](https://editor.p5js.org/Lula402/full/0Pesy4xRM)
+
+**CÓDIGO**
+
+OSCILLATOR
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+class Oscillator {
+  constructor() {
+    this.angle = createVector();
+    this.angleVelocity = createVector(0,0);
+    this.angleAcceleration = createVector(0,0);
+    let xAmp = randomGaussian(100, 50); 
+    let yAmp = randomGaussian(100, 50);
+    this.amplitude = createVector(xAmp, yAmp);
+    this.mass = randomGaussian(1, 2); 
+  }
+  
+  applyForce(force) {
+    let f = p5.Vector.div(force, this.mass);
+    this.angleAcceleration.add(f);
+  }
+
+  update() {
+    this.angleVelocity.add(this.angleAcceleration);
+    this.angle.add(this.angleVelocity);
+    this.angleVelocity.mult(0.98); 
+    this.angleAcceleration.mult(0);
+  }
+
+  show() {
+    let x = sin(this.angle.x) * this.amplitude.x;
+    let y = sin(this.angle.y) * this.amplitude.y;
+
+    push();
+    translate(width / 2, height / 2);
+    let colorV = map(this.angleVelocity.mag(), 0, 0.1, 0, 1);
+    let from = color(218, 165, 32);
+    let to = color(72, 61, 139);
+    fill(lerpColor(from, to, colorV));
+    stroke(0);
+    strokeWeight(2);
+    line(0, 0, x, y);
+    circle(x, y, this.mass * 16); 
+    pop();
+  }
+}
+
+```
+SKETCH
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// An array of objects
+let oscillators = [];
+
+function setup() {
+  createCanvas(640, 240);
+  // Initialize all objects
+  for (let i = 0; i < 10; i++) {
+    oscillators.push(new Oscillator());
+  }
+}
+
+function draw() {
+  background(255,255,255,20);
+  for (let o of oscillators) {
+    if (mouseIsPressed) {
+      let wind = createVector(0.002, 0.005); 
+      o.applyForce(wind);
+    }
+    o.update();
+    o.show();
+  }
+}
+```
 
 **ACTIVIDAD 8**
+
 
 
 **ACTIVIDAD 9**
@@ -321,6 +408,7 @@ function draw() {
 
 
 ## Bitácora de reflexión
+
 
 
 
