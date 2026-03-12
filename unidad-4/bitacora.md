@@ -51,14 +51,85 @@ Esto usa la coordenada (x,y) que tiene el objeto, como el centro de la rect. Si 
 **ACTIVIDAD 3**
 
 **LINK**
-
+https://editor.p5js.org/Lula402/full/WxC5-7KYO
 
 **CÓDIGO**
-```
 
+vehiculo.js
+```js
+class Vehiculo {
+  constructor() {
+    this.posicion = createVector(width / 2, height / 2);
+    this.velocidad = createVector(0, 0);
+    this.aceleracion = createVector(0, 0);
+    this.r = 15; 
+    this.topSpeed = 5;
+  }
+
+  applyForce(fuerza) {
+    this.aceleracion.add(fuerza);
+  }
+
+  update() {
+    this.velocidad.add(this.aceleracion);
+    this.velocidad.limit(this.topSpeed);
+    this.posicion.add(this.velocidad);
+    this.aceleracion.mult(0);
+    this.velocidad.mult(0.98);
+  }
+
+  display() {
+
+    let angulo = this.velocidad.heading();
+
+    push();
+    translate(this.posicion.x, this.posicion.y);
+    rotate(angulo);  
+    fill(127);
+    stroke(0);
+    strokeWeight(2);
+    triangle(this.r, 0, -this.r, -this.r/2, -this.r, this.r/2);
+    pop();
+  }
+}
+```
+Scketch.js
+```js
+let v;
+
+function setup() {
+  createCanvas(600, 400);
+  v = new Vehiculo();
+}
+
+function draw() {
+  background(240);
+
+  if (keyIsDown(LEFT_ARROW)) {
+    let fuerzaIzquierda = createVector(-0.1, 0);
+    v.applyForce(fuerzaIzquierda);
+  }
+  if (keyIsDown(RIGHT_ARROW)) {
+    let fuerzaDerecha = createVector(0.1, 0);
+    v.applyForce(fuerzaDerecha);
+  }
+
+  v.update();
+  v.display();
+  
+  checkEdges(v);
+}
+
+function checkEdges(obj) {
+  if (obj.posicion.x > width) obj.posicion.x = 0;
+  if (obj.posicion.x < 0) obj.posicion.x = width;
+}
 ```
 
 **ACTIVIDAD 4**
+
+
+
 **ACTIVIDAD 5**
 **ACTIVIDAD 6**
 **ACTIVIDAD 7**
@@ -70,4 +141,5 @@ Esto usa la coordenada (x,y) que tiene el objeto, como el centro de la rect. Si 
 
 
 ## Bitácora de reflexión
+
 
