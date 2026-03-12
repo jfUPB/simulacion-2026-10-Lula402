@@ -23,12 +23,51 @@ En esta simulación, la bara con las bolitas está girando constantemente. El de
 
 Imaginemos que el canvas es una hoja de papel, si yo no hiciera translate, entonces estaría anclando la punta superior izquierda de la hoja y girandola, pero a hacer el translate, estoy anclando la hoja en su centro y girandola sobre si misma. De esa manera, aunque la figura no es quien se mueva, parece hacerlo.
 
+5. En este ejemplo, no hay función de appply force, pero dentro del update del mover está el 101. Ahí se encuentra el calculo de la posición del mouse y la creación del vector dir que resta la posición del mouse y la de mover, para así perseguirlo.
+
+
+6. ¿Qué hace la función heading()?
+   
+Esa función probablemente está dejando de lado la magnitud de la velocidad, para fijarse solamente en la dirección y retornarla como un numero, para que pueda ser usada como ángulo.
+
+7. ¿Qué hace la función push() y pop()? 
+   
+Permiten que podamos mover y rotar el canvas solo para ese objeto con el que estamos tratando. El push() es como si tomara una foto o se memorizara como estaban las cosas, luengo dentro del bloque se hacen cambios, y por último con el pop ya terminamos con este objeto y se borra todos los cambios que acabamos de hacer para volver a como estabamos al hacer el push.
+
+8. ¿Qué hace rectMode(CENTER)? 
+
+Esto usa la coordenada (x,y) que tiene el objeto, como el centro de la rect. Si es rectMode(CENTER) y decimos rect(20,20,width, height) entonces la mitad de esta rect va a estar ubicada en el (20,20) del canvas.
+
+9. ¿Cuál es la relación entre el ángulo de rotación y el vector de velocidad? Trata de dibujar en un papel el vector de velocidad y cómo se relaciona con el ángulo de rotación y la operación de traslación y rotación.
+    
+**-> Estado Inicial:** El origen (0,0) está arriba a la izquierda.
+
+**-> translate(pos.x, pos.y):** El origen se mueve a donde está el objeto. Ahora el rect esta en su propio sistema donde su centro es el (0,0).
+
+**-> rotate(velocity.heading()):** El sistema rota hasta que el eje X se inclina para alinearse perfectamente con el vector de velocidad.
+
+**-> rect(0, 0, 30, 10):** Dibujamos el rect sobre ese eje X ya inclinado.
+
 **ACTIVIDAD 3**
+
+**LINK**
+
+
+**CÓDIGO**
+```
+
+```
+
 **ACTIVIDAD 4**
 **ACTIVIDAD 5**
 **ACTIVIDAD 6**
+**ACTIVIDAD 7**
+**ACTIVIDAD 8**
+**ACTIVIDAD 9**
+**ACTIVIDAD 10**
 ## Bitácora de aplicación 
 
 
 
 ## Bitácora de reflexión
+
