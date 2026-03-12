@@ -411,7 +411,7 @@ function draw() {
 
 **SKETCH**
 
-```
+```js
 // The Nature of Code
 // Daniel Shiffman
 // http://natureofcode.com
@@ -530,6 +530,7 @@ function mouseReleased() {
 
 
 ## Bitácora de reflexión
+
 
 
 
