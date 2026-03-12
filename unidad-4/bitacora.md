@@ -395,19 +395,142 @@ function draw() {
 
 **ACTIVIDAD 8**
 
+![serpiente](https://github.com/user-attachments/assets/a3bac97c-b416-44b8-8b3e-3b32b604eeed)
 
+**Los cambios para lograrlo se basaron en:** 
+
+- usar un startAngle = 0; para que cada circulo tuviera un inicio diferente y progresivo cada frame.  
+
+- En el draw se incrementa el angulo para poder que avancen con _startAngle += 0.02;_ y además se guarda ese angulo recien calculado como el actual para ya usarlo _let currentAngle = startAngle;_.
+
+- al momento de calcular Y, ya no se usa angle sino el angulo actual con el que estamos trabjando: _let y = amplitude * sin(currentAngle);_
+
+- Por último, sumarle al angulo actual la velocidad es lo que realmente hace que se mueva como una ola, porque sino sería como una linea de arriba hacia abajo. Esta linea lo que logra y determina es que tanto desfase hay entre los circulos: _currentAngle += angleVelocity;_
 
 **ACTIVIDAD 9**
 
+**SKETCH**
+
+```
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+let anchor; 
+let bob1; 
+let bob2;
+let spring1; 
+let spring2;
+let gravity;
+
+function setup() {
+  createCanvas(640, 400);
+  anchor = createVector(width / 2, 50);
+  gravity = createVector(0, 1); 
+
+  bob1 = new Bob(width / 2, 120);
+  bob2 = new Bob(width / 2, 220);
+
+  spring1 = new Spring(anchor.x, anchor.y, 100); 
+  spring2 = new Spring(bob1.position.x, bob1.position.y, 100);
+}
+
+function draw() {
+  background(255);
+
+  spring1.connect(bob1);
+  spring1.constrainLength(bob1, 30, 200);
+  spring2.anchor.set(bob1.position); 
+
+  let force2 = calculateSpringForce(spring2, bob2);
+  bob2.applyForce(force2); 
+  
+  let reactionForce = force2.copy().mult(-1);
+  bob1.applyForce(reactionForce);
+  spring2.constrainLength(bob2, 30, 200);
+
+  bob1.applyForce(gravity);
+  bob1.handleDrag(mouseX, mouseY);
+  bob1.update();
+  
+  bob2.applyForce(gravity);
+  bob2.handleDrag(mouseX, mouseY);
+  bob2.update();
+
+  spring1.showLine(bob1);
+  spring2.showLine(bob2);
+  
+
+  spring1.show(); 
+  bob1.show();
+  bob2.show();
+}
+
+function calculateSpringForce(s, b) {
+  let f = p5.Vector.sub(b.position, s.anchor);
+  let d = f.mag();
+  let stretch = d - s.restLength;
+  f.setMag(-1 * s.k * stretch);
+  return f;
+}
+
+function mousePressed() {
+  bob1.handleClick(mouseX, mouseY);
+  bob2.handleClick(mouseX, mouseY);
+}
+
+function mouseReleased() {
+  bob1.stopDragging();
+  bob2.stopDragging();
+}
+```
 
 **ACTIVIDAD 10**
 
+https://editor.p5js.org/Lula402/full/OabaVUetd
+
+sketch
+```js
+let p1;
+let p2;
+
+function setup() {
+  createCanvas(640, 400);
+  p1 = new Pendulum(width / 2, 0, 120);
+  p2 = new Pendulum(p1.bob.x, p1.bob.y, 100);
+}
+
+function draw() {
+  background(255);
+
+  p1.update();
+  p1.drag();
+  p1.show();
+
+  p2.pivot.set(p1.bob.x, p1.bob.y);
+
+  p2.update();
+  p2.drag();
+  p2.show();
+}
+
+function mousePressed() {
+  p1.clicked(mouseX, mouseY);
+  p2.clicked(mouseX, mouseY);
+}
+
+function mouseReleased() {
+  p1.stopDragging();
+  p2.stopDragging();
+}
+```
 
 ## Bitácora de aplicación 
 
 
 
 ## Bitácora de reflexión
+
 
 
 
