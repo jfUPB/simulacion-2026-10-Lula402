@@ -132,9 +132,13 @@ function checkEdges(obj) {
 
 La modificación es muy simple, sería solo quitar la línea donde reseteamos la aceleración y decimos acc.mult(0), al quitarla ya quedamos con fuerzas acumulativas porque en cada frame ya no empezamos sin fuerzas y a calcular desde 0, sino que las fuerzas del frame anterior van a estar ahí y van a afectar en los nuevos cálculos.
 
-2. <img width="221" height="155" alt="image" src="https://github.com/user-attachments/assets/e8399932-8059-4424-be27-50c7ed346054" />
+2.
 
-3. ![attractor](https://github.com/user-attachments/assets/08254e72-c9ec-413c-847b-91e4f34ad782)
+<img width="221" height="155" alt="image" src="https://github.com/user-attachments/assets/e8399932-8059-4424-be27-50c7ed346054" />
+
+3.
+
+![attractor](https://github.com/user-attachments/assets/08254e72-c9ec-413c-847b-91e4f34ad782)
 
 ATTRACTOR
 ```js
@@ -249,17 +253,75 @@ function mouseReleased() {
   attractor.handleRelease();
 }
 ```
+
 **ACTIVIDAD 5**
+
+1. ¿Cuál es la relación entre r y theta con las posiciones x y y?
+   
+x = r * cos(theta)
+
+y = r * sin(theta)
+
+La relación esta en que si dibujo un triángulo rectángulo desde el centro, r es la hipotenusa. El cos me da el lado X y el sen la del lado opuesto que es Y.
+
+2. Esta creando un p5 vector **v**, pero este vector lo esta creando a partir solo de el angulo theta, es decir, no tiene magnitud, es 1 (unitario), ahi solo está importando la dirección. Al no entregarle ese segundo parámetro *r*, la bolita parece palpitando en el centro.
+
+3. El movimiento vuelve a la normalidad, el círculo se mueve alrededor del centro, exactamente igual que en el primer código. Todo esto debido a que ya tiene otra vez r, entonces se le da la dirección y la magnitud.
+
 **ACTIVIDAD 6**
+
+<p align=center>
+<img width="234" height="188" alt="image" src="https://github.com/user-attachments/assets/935f7bd6-4e0f-4c5a-af32-53a287541fe4" /> </p>
+
+**LINK**
+
+https://editor.p5js.org/Lula402/full/H2S7G_ePT
+
+**CÓDIGO**
+
+```js
+//By Lula
+
+let angulo = 0;
+let amplitud = 150;
+let velocidadAngular = 0.05; 
+
+function setup() {
+  createCanvas(600, 400);
+  colorMode(RGB, 255, 255, 255, 100);
+}
+
+function draw() {
+  background(0,0,0,10);
+  translate(width / 2, height / 2); 
+  let x = amplitud * sin(angulo);
+  let y = amplitud * sin(angulo);
+  stroke(0);
+  fill(180,180,180,50);
+  circle(x, 0, 48);
+  circle(0, y, 48);
+  angulo += velocidadAngular;
+}
+```
+
 **ACTIVIDAD 7**
+
+
 **ACTIVIDAD 8**
+
+
 **ACTIVIDAD 9**
+
+
 **ACTIVIDAD 10**
+
+
 ## Bitácora de aplicación 
 
 
 
 ## Bitácora de reflexión
+
 
 
 
