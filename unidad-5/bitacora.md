@@ -48,11 +48,11 @@ Tendría que crear una nueva clase que herede de particle, no tendría que modif
 
 Represento el ciclo de vida de colonias de hongos en una placa de Petri, desde su expansión orgánica hasta la esterilización clínica. La idea es mostrar la tensión entre el crecimiento biológico libre y el control humano que decide cuándo algo debe dejar de existir.
 
-Fase 1: Siembra. El usuario decide dónde nacen las esporas mediante clicks o aplica gotas de cloro para bloquear el terreno antes de que las colonias se expandan.
+**Fase 1: Siembra.** El usuario decide dónde nacen las esporas mediante clicks o aplica gotas de cloro para bloquear el terreno antes de que las colonias se expandan.
 
-Fase 2: Crecimiento. Las distintas especies se desarrollan a su propio ritmo, adquiriendo las texturas, colores y comportamientos biológicos específicos de cada hongo.
+**Fase 2: Crecimiento.** Las distintas especies se desarrollan a su propio ritmo, adquiriendo las texturas, colores y comportamientos biológicos específicos de cada hongo.
 
-Fase 3: Esterilización por calor. El mouse actúa como el fuego de un mechero de laboratorio, permitiendo quemar las colonias existentes para limpiar y esterilizar la placa de Petri.
+**Fase 3: Esterilización por calor.** El mouse actúa como el fuego de un mechero de laboratorio, permitiendo quemar las colonias existentes para limpiar y esterilizar la placa de Petri.
 
 **BOCETOS**
 
@@ -63,19 +63,19 @@ Fase 3: Esterilización por calor. El mouse actúa como el fuego de un mechero d
 
 **MAPA DE DESICIONES**
 
-1. Emitter:
+**1. Emitter:**
 Decidí que el Emitter sea el punto exacto del click porque simula la siembra de una espora. Las partículas salen en todas direcciones (360°) porque los hongos no caen como lluvia, sino que se expanden desde un centro buscando colonizar el agar.
 
-3. Fuerzas (Fricción y Repulsión):
+**2. Fuerzas (Fricción y Repulsión):**
 Usé una fuerza de fricción para que el hongo se detenga poco a poco y no crezca infinitamente, así la colonia mantiene un tamaño controlado. La repulsión del cloro es una barrera química, entonces el hongo "siente" el químico y su trayectoria se desvía porque el cloro lo empuja lejos, impidiendo que crezca en esa zona.
 
-5. Condición de Muerte (Natural y Provocada por el fuego):
+**3. Condición de Muerte (Natural y Provocada por el fuego):**
 El lifespan representa el agotamiento de nutrientes en el agar, cuando llega a cero, la partícula muere. Pero incluí la muerte por fuego para representar la intervención humana, si el usuario quema el origen del Emitter, la colonia entera deja de producir particulas y elimina.
 
-7. Visualización:
+**4. Visualización:**
 Usé alphas bajísimos y muchas partículas. Al amontonarse, crean esa textura algodonosa y "sucia" de las fotos de laboratorio. La Penicilina, por ejemplo, cambia de color de blanco a turquesa para mostrar visualmente cómo el hongo madura mientras envejece.
 
-9. Interacción:
+**5. Interacción:**
 El usuario es el microbiólogo. En su rol decide qué sembrar, pone barreras químicas con el cloro para controlar el espacio y usa el fuego para esterilizar la placa de Petri. Es un obra con juego de poder entre la expansión de la naturaleza y el control del laboratorio.
 
 **LINK**
