@@ -451,3 +451,55 @@ FASE 3: FUEGO
 
 
 ## Bitácora de reflexión
+
+**PARTE 1**
+
+**1. Una partícula es una entidad con estado.**
+
+Una partícula es una entidad con estado no solo debido al posible ciclo de vida que se le puede aplicar, pero también por que cambia de estado o comportamiento depende del sistema que se plantee, por ejemplo, fuerzas.
+
+**2. Una partícula tiene ciclo de vida.**
+
+Una partícula tiene ciclo de vida, porque se crea (en nuestro caso desde un emitter), luego tiene su comportamiento, ya sea crecer, cambiar de color, caer, etc, por último la partícula muere.
+
+**3. Un sistema de partículas gestiona colecciones dinámicas de elementos.**
+
+Un sistema de partículas gestiona muchas particulas, cada una con su comportamiento heredado, eso las hace dinámicas. Por lo anterior un sistema de particulas en realidad gestiona diferentes grupos (emitters) de particulas y debe estarse actualizando cada frame.
+
+**4. La creación y eliminación de partículas no es un detalle técnico menor, sino parte central del modelo.**
+
+Estos dos momentos son la parte central de el modelo de un ciclo de vida, porque es el momento inicial y el momento final. Además no es un detalle técnico menor ni una desición aislada, debido a que eliminarlas va totalmente de la mano con la optimización y el cuidado de los fps.
+
+**5. Debe haber separación entre la lógica de una partícula individual y la lógica del sistema/emisor.**
+
+Claro, es por el principio de responsabilidad única, un emitter se encarga de gestionar un grupito de particulas, e incluso podría ni siquiera saber que tipo son o como se comportan, mientras que cada particula individualmente se encarga de saber como se va a comportar o a mostrar, sin tener que saber a que emitter pertenece. Las lógicas deben ir separadas porque el emitter posee esas partículas individuales de las que hablamos y es mucho mas desacoplable y entendible que el emitter se encargue SOLO de crearlas y mostrarlas.
+
+**6. Un emisor o particle system es una abstracción importante.**
+
+Permite generar particulas, sin necesitar tener conocimiento profundo de como estas se comportan.
+
+**7. Pueden existir sistemas de sistemas.**
+
+Si, de hecho en mi programa del apply, tengo más de un emitter (sistema 1: los colonias) y tengo el sistema de los tipos de hongos (sistema 2: los hongos), entonces el sistema 2 es un sistema del sistema 1.
+
+**8. Puede haber heterogeneidad usando herencia y polimorfismo.**
+
+Es que HAY heterogeneidad si hay herencia + polimorfismo. Si yo heredo y no hago cambios es homogeneidad, pero si yo heredo y cambio la manera en la que me comporto en comparación de quien heredé (polimorfismo), significa que soy diferente = heterogeneidad.
+
+**9. Las partículas pueden responder a fuerzas globales y locales.**
+
+Claro que si, la particula puede tener fuerzas en su propio comportamiento, pero gracias al motion 101 si hay una fuerza en nuestro mundo, también se debería tener en cuenta al momento de calcular los vectores de movimiento (101). Entonces no es ni siquiera que "pueden", diría yo que es más bien un "deben".
+
+**10. La representación visual puede variar sin cambiar el principio algorítmico de fondo.**
+
+Clarooo, basicamente fue lo que reforzamos en esta unidad, por ejemplo: cuando se heredaba de la clase particle, pero se hacia una modificación en el show(), de esa manera sin cambiar el algortmo de fondo (particle), la representación visual cambia.
+
+**PARTE 2**
+
+**¿Qué se mantendría igual y qué cambiaría?**
+
+Se mantendría igual toda la lógica base de como funcionan las particulas y los emitter, es decir, los principios de las fuerzas, el motion 101, la estética. Lo que cambiaría sería el lenguaje de programación y la manera en la que se crean los programas, por ejemplo en touch es nodal, mientras que en unity si hay scripts pero se pueden programar controles de los parámetros.
+
+**¿Qué partes de tu diseño son independientes de la herramienta?**
+
+Se podría decir que todas las partes son independientes, debido a que se supone que lo que estamos aprendiendo y usando es transferible a otros espacios. En las otras herramientas también está la manera de aplicar mi diseño.
