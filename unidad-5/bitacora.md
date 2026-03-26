@@ -49,13 +49,34 @@ Tendría que crear una nueva clase que herede de particle, no tendría que modif
 Represento el ciclo de vida de colonias de hongos en una placa de Petri, desde su expansión orgánica hasta la esterilización clínica. La idea es mostrar la tensión entre el crecimiento biológico libre y el control humano que decide cuándo algo debe dejar de existir.
 
 Fase 1: Siembra. El usuario decide dónde nacen las esporas mediante clicks o aplica gotas de cloro para bloquear el terreno antes de que las colonias se expandan.
+
 Fase 2: Crecimiento. Las distintas especies se desarrollan a su propio ritmo, adquiriendo las texturas, colores y comportamientos biológicos específicos de cada hongo.
+
 Fase 3: Esterilización por calor. El mouse actúa como el fuego de un mechero de laboratorio, permitiendo quemar las colonias existentes para limpiar y esterilizar la placa de Petri.
 
 **BOCETOS**
 
 ![WhatsApp Image 2026-03-26 at 1 58 59 PM](https://github.com/user-attachments/assets/33f72ad1-486d-4c89-96a8-f528a1adc719)
 
+<img width="1280" height="1221" alt="image" src="https://github.com/user-attachments/assets/d32e3052-013a-4f28-8a61-c5a542947b32" />
+
+
+**MAPA DE DESICIONES**
+
+1. Emitter:
+Decidí que el Emitter sea el punto exacto del click porque simula la siembra de una espora. Las partículas salen en todas direcciones (360°) porque los hongos no caen como lluvia, sino que se expanden desde un centro buscando colonizar el agar.
+
+3. Fuerzas (Fricción y Repulsión):
+Usé una fuerza de fricción para que el hongo se detenga poco a poco y no crezca infinitamente, así la colonia mantiene un tamaño controlado. La repulsión del cloro es una barrera química, entonces el hongo "siente" el químico y su trayectoria se desvía porque el cloro lo empuja lejos, impidiendo que crezca en esa zona.
+
+5. Condición de Muerte (Natural y Provocada por el fuego):
+El lifespan representa el agotamiento de nutrientes en el agar, cuando llega a cero, la partícula muere. Pero incluí la muerte por fuego para representar la intervención humana, si el usuario quema el origen del Emitter, la colonia entera deja de producir particulas y elimina.
+
+7. Visualización:
+Usé alphas bajísimos y muchas partículas. Al amontonarse, crean esa textura algodonosa y "sucia" de las fotos de laboratorio. La Penicilina, por ejemplo, cambia de color de blanco a turquesa para mostrar visualmente cómo el hongo madura mientras envejece.
+
+9. Interacción:
+El usuario es el microbiólogo. En su rol decide qué sembrar, pone barreras químicas con el cloro para controlar el espacio y usa el fuego para esterilizar la placa de Petri. Es un obra con juego de poder entre la expansión de la naturaleza y el control del laboratorio.
 
 **LINK**
 
@@ -440,14 +461,20 @@ function dibujarCursor() {
 **SS**
 
 FASE 1: SIEMBRA
-<img width="434" height="336" alt="image" src="https://github.com/user-attachments/assets/abf7ec5e-a038-4e0f-92d0-3f0fd602aa78" />
+
+<p align=center>
+<img width="434" height="336" alt="image" src="https://github.com/user-attachments/assets/abf7ec5e-a038-4e0f-92d0-3f0fd602aa78" /></p>
 
 FASE 2: CLORO
-<img width="415" height="334" alt="image" src="https://github.com/user-attachments/assets/379c6f7c-bce8-42f3-b74c-e82d87256bb9" />
+
+<p align=center>
+<img width="415" height="334" alt="image" src="https://github.com/user-attachments/assets/379c6f7c-bce8-42f3-b74c-e82d87256bb9" /></p>
 
 
 FASE 3: FUEGO
-<img width="434" height="336" alt="image" src="https://github.com/user-attachments/assets/5438ffec-6462-460f-8197-732908a24b82" />
+
+<p align=center>
+<img width="434" height="336" alt="image" src="https://github.com/user-attachments/assets/5438ffec-6462-460f-8197-732908a24b82" /></p>
 
 
 ## Bitácora de reflexión
