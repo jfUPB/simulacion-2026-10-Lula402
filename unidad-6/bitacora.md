@@ -6,13 +6,13 @@
 
 1. Estas son las dos imagenes que escogeré:
 
-<p align=center>Unfenced Existence, 2018</p>
+<p align=center>Mirror Removal #5, 2019</p>
 
 <p align=center>
 <img width="340" height="335" alt="image" src="https://github.com/user-attachments/assets/857ebc0f-5282-42ee-a3e4-136d45304329" />
 </p>
 
-<p align=center>Mirror Removal #5, 2019</p>
+<p align=center>Unfenced Existence, 2018</p>
 
 <p align=center>
 <img width="368" height="277" alt="image" src="https://github.com/user-attachments/assets/e6584ddb-5c7b-49c4-b91e-98ff3ec8489e" />
@@ -20,7 +20,7 @@
 
 2. 
 
-| Elemento  | Decisión visual obra 1 | Decisión visual obra 2 |
+| Elemento  | Decisión visual Mirror Removal #5 | Decisión visual Unfenced Existence |
 | ------------- | ------------- | ------------- |
 | composición | Content Cell  | Content Cell  |
 | densidad | Content Cell  | Content Cell  |
@@ -34,7 +34,7 @@
 
 4. ¿Qué tipo de reglas o sistema crees que podrían estar detrás de esa pieza?
 
-| Pieza 1  | Pieza 2 |
+| Mirror Removal #5 | Unfenced Existence |
 | ------------- | ------------- |
 | Content Cell  | Content Cell  |
 
