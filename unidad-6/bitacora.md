@@ -9,13 +9,13 @@
 <p align=center>Unfenced Existence, 2018</p>
 
 <p align=center>
-<img width="20" height="15" alt="image" src="https://github.com/user-attachments/assets/686a7cd2-baca-4725-b74f-ecae09154da3" />
+<img width="340" height="335" alt="image" src="https://github.com/user-attachments/assets/857ebc0f-5282-42ee-a3e4-136d45304329" />
 </p>
 
 <p align=center>Mirror Removal #5, 2019</p>
 
 <p align=center>
-<img width="20" height="20" alt="image" src="https://github.com/user-attachments/assets/d285d4b8-01f9-4645-94ff-cc80859a839c" />
+<img width="368" height="277" alt="image" src="https://github.com/user-attachments/assets/e6584ddb-5c7b-49c4-b91e-98ff3ec8489e" />
 </p>
 
 2. 
