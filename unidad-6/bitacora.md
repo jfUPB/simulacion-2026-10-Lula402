@@ -49,5 +49,9 @@
 
 ## Bitácora de aplicación 
 
+**Link código:** https://editor.p5js.org/Lula402/full/QeBeVQ_8c
+
+**Link Documentación:** https://docs.google.com/document/d/1q3qkl_LQvGyQnbr1LMeFgan-MMnghWPeO4rjHPM3BTA/edit?usp=sharing
+
 
 ## Bitácora de reflexión
