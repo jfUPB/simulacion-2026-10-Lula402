@@ -17,6 +17,35 @@ Las palabras que propongo:
 
 La palabra que más me interesa es peculiar, porque se siente muy viva y cada letra con su personalidad, haciendo que la palabra en general se vea literalmente peculiar y se entienda la intención. Esa palabra siempre me ha gustado en general, porque no me gusta que siempre se busque que las cosas sean "normales", me gusta cada cosa única y con su rareza que lo hace especial.
 
+
+## ACTIVIDAD 2
+
+1. Explica con tus palabras qué hace cada uno de esos conceptos.
+
+_**Engine:**_ 
+El engine es donde actualizamos las físicas de nuestro entorno. Donde antes haciamos el update del motion 101, ahora con matter.js lo llamraremos engine.
+
+_**Composite:**_ 
+Los entiendo literalmente como una composición. Es una cajita en la que puedo guardar objetos e incluso objetos de diferentes partes.
+
+_**World:**_ 
+Un mundo es básicamente un composite bien completo y complejo, porque es esa cajita, pero contiene todos los objetos de world.
+
+_**Bodies:**_ 
+Es un metodo para crear bodies de geometría básica como un cuadrado o un circulo.
+
+_**Constraint:**_ 
+Esto determina que tan unidos están los cuerpos y objetos. Con los constrains se puede jugar mucho para hacer que se vea de una manera particular el movimiento de un objeto, ya que basicamente es una restricción en el movimiento.
+
+_**MouseConstraint:**_ 
+Se usa para que podamos interactuar con los bodies de la simulación. Tienen los métodos comunes de siempre, como mouseUp, mouseDown, etc, entonces se puede jugar mucho con los conceptos de la simulación y la interación.
+
+
+_**EXPERIMENTO #1**_ 
+
+
+
+_**EXPERIMENTO #2**_ 
 ## Bitácora de aplicación 
 
 
