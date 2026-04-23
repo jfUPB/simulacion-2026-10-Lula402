@@ -11,10 +11,11 @@
 
 Las palabras que propongo:
 
-| First Header  | Second Header | Second Header |
+| Peculiar  | Reverse | Water |
 | ------------- | ------------- | ------------- |
-| Content Cell  | Content Cell  | Content Cell  |
+| <img width="1280" height="958" alt="image" src="https://github.com/user-attachments/assets/bffa5ac4-4117-4f3c-8bf4-58e6a392338a" />| <img width="1600" height="1203" alt="image" src="https://github.com/user-attachments/assets/03a54b5f-7eee-436e-95e6-7781db36d039" />| <img width="1600" height="1204" alt="image" src="https://github.com/user-attachments/assets/42f962e0-3794-4768-bbca-3bd2671db65a" />|
 
+La palabra que más me interesa es peculiar, porque se siente muy viva y cada letra con su personalidad, haciendo que la palabra en general se vea literalmente peculiar y se entienda la intención. Esa palabra siempre me ha gustado en general, porque no me gusta que siempre se busque que las cosas sean "normales", me gusta cada cosa única y con su rareza que lo hace especial.
 
 ## Bitácora de aplicación 
 
