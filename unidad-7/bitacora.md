@@ -52,9 +52,10 @@ _**EXPERIMENTO #1**_
 <img width="987" height="728" alt="image" src="https://github.com/user-attachments/assets/4faac451-1aac-40da-9716-bd74528ad562" />
 </p>
 
+
 _**Link:**_ https://editor.p5js.org/Lula402/full/bUkDos1rU
 
-´´´
+```
 const { Engine, Bodies, Composite, Events, World } = Matter;
 
 let engine;
@@ -155,7 +156,7 @@ _**EXPERIMENTO #2**_
 _**Link:**_ https://editor.p5js.org/Lula402/full/EAB0rMKC6
 
 Letra.js
-´´´
+```
 class Letra {
   constructor(x, y, char) {
     this.char = char;
@@ -184,10 +185,10 @@ class Letra {
     pop();
   }
 }
-´´´
+```
 
 sketch.js
-´´´
+```
 const { Engine, World, Bodies, Composite, Mouse, MouseConstraint } = Matter;
 
 let engine;
@@ -234,7 +235,14 @@ function mousePressed() {
   let nuevaLetra = new Letra(mouseX, mouseY, charAleatorio);
   letras.push(nuevaLetra);
 }
-´´´
+```
+
+**Comportamiento fisico que me interesa para mi palabra**
+
+Quiero que las letras de mi palabra sean catapultables. Quiero que salgan volando de diferentes puntos del canvas, una a la vez. Quiero que tengan gravedad y tambien restitution porque quiero que reboten un poco. Quiero que se unan en orden al caer, como si la letra que ya esta en el canvas tenga un iman que atraiga a la que va cayendo. 
+
+## ACTIVIDAD 3
+
 
 ## Bitácora de aplicación 
 
