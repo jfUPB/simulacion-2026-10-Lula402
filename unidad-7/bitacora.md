@@ -40,12 +40,202 @@ Esto determina que tan unidos están los cuerpos y objetos. Con los constrains s
 _**MouseConstraint:**_ 
 Se usa para que podamos interactuar con los bodies de la simulación. Tienen los métodos comunes de siempre, como mouseUp, mouseDown, etc, entonces se puede jugar mucho con los conceptos de la simulación y la interación.
 
+2. Replica al menos dos experimentos básicos integrando Matter.js con p5.js.
 
 _**EXPERIMENTO #1**_ 
 
+<p align=center>
+<img width="987" height="728" alt="image" src="https://github.com/user-attachments/assets/ddee4041-ca5b-4c6f-9150-152a3f91b562" />
+</p>
+
+<p align=center>
+<img width="987" height="728" alt="image" src="https://github.com/user-attachments/assets/4faac451-1aac-40da-9716-bd74528ad562" />
+</p>
+
+_**Link:**_ https://editor.p5js.org/Lula402/full/bUkDos1rU
+
+´´´
+const { Engine, Bodies, Composite, Events, World } = Matter;
+
+let engine;
+let world;
+let ball;
+let ballColor = "#f5d259";
+
+function setup() {
+  createCanvas(800, 600);
+  rectMode(CENTER);
+
+  engine = Engine.create();
+  world = engine.world;
+  let ground = Bodies.rectangle(400, 580, 810, 60, { isStatic: true, friction: 10});
+
+  let sensor = Bodies.rectangle(400, 300, 500, 50, {
+    isSensor: true,
+    isStatic: true,
+  });
+
+  Events.on(engine, "collisionStart", function (event) {
+    let pairs = event.pairs;
+
+    for (let i = 0; i < pairs.length; i++) {
+      let pair = pairs[i];
+
+      if (
+        (pair.bodyA === sensor && pair.bodyB === ball) ||
+        (pair.bodyA === ball && pair.bodyB === sensor)
+      ) {
+        ballColor = "#f55a3c";
+      }
+    }
+  });
+
+  Events.on(engine, "collisionEnd", function (event) {
+    let pairs = event.pairs;
+
+    for (let i = 0; i < pairs.length; i++) {
+      let pair = pairs[i];
+
+      if (
+        (pair.bodyA === sensor && pair.bodyB === ball) ||
+        (pair.bodyA === ball && pair.bodyB === sensor)
+      ) {
+        ballColor = "#f5d259";
+      }
+    }
+  });
+
+  Composite.add(world, [ground, sensor]);
+
+  ball = Bodies.circle(400, 100, 30, {
+    restitution: 1.1
+  });
+
+  Composite.add(world, ball);
+}
+
+function draw() {
+  background(20);
+
+  Engine.update(engine);
+
+  fill(255);
+  noStroke();
+  rect(400, 580, 810, 60);
+
+  noFill();
+  stroke(255, 0, 0);
+  rect(400, 300, 500, 50);
+
+  let pos = ball.position;
+  let angle = ball.angle;
+
+  push();
+  translate(pos.x, pos.y);
+  rotate(angle);
+
+  fill(ballColor);
+  noStroke();
+  circle(0, 0, 60);
+  pop();
+}
+´´´
 
 
 _**EXPERIMENTO #2**_ 
+
+<p align=center>
+<img width="988" height="733" alt="image" src="https://github.com/user-attachments/assets/c2496aab-50b1-4b99-bb99-058a2e3d86c0" />
+</p>
+
+<p align=center>
+<img width="955" height="727" alt="image" src="https://github.com/user-attachments/assets/2f79c676-8200-4cc6-8ee0-e02b4383403d" />
+</p>
+
+_**Link:**_ https://editor.p5js.org/Lula402/full/EAB0rMKC6
+
+Letra.js
+´´´
+class Letra {
+  constructor(x, y, char) {
+    this.char = char;
+    this.size = random(30, 70);
+    this.body = Bodies.rectangle(x, y, this.size * 0.6, this.size * 0.8, {
+      restitution: 0.6,
+      friction: 0.1
+    });
+
+    Composite.add(world, this.body);
+  }
+
+  show() {
+    let pos = this.body.position;
+    let angle = this.body.angle;
+
+    push();
+    translate(pos.x, pos.y); 
+    rotate(angle);      
+
+    fill(0);
+    noStroke();
+    textSize(this.size);
+    textAlign(CENTER, CENTER); 
+    text(this.char, 0, 0);
+    pop();
+  }
+}
+´´´
+
+sketch.js
+´´´
+const { Engine, World, Bodies, Composite, Mouse, MouseConstraint } = Matter;
+
+let engine;
+let world;
+let letras = []; 
+let mouseConstraint;
+
+function setup() {
+  createCanvas(800, 600);
+  let cnv = createCanvas(800, 600); 
+  engine = Engine.create();
+  world = engine.world;
+
+  let ground = Bodies.rectangle(400, 590, 800, 20, { isStatic: true });
+  let ceiling = Bodies.rectangle(400, 10, 800, 20, { isStatic: true });
+  let leftWall = Bodies.rectangle(10, 300, 20, 600, { isStatic: true });
+  let rightWall = Bodies.rectangle(790, 300, 20, 600, { isStatic: true });
+
+  Composite.add(world, [ground, ceiling, leftWall, rightWall]);
+
+  let canvasMouse = Mouse.create(cnv.elt); 
+  
+  mouseConstraint = MouseConstraint.create(engine, {
+    mouse: canvasMouse,
+    constraint: { stiffness: 0.2 }
+  });
+  
+  Composite.add(world, mouseConstraint);
+}
+
+function draw() {
+  background(255);
+  Engine.update(engine);
+
+  for (let l of letras) {
+    l.show();
+  }
+}
+
+function mousePressed() {
+  let caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let listaDeLetras = caracteres.split('');
+  let charAleatorio = random(listaDeLetras); 
+  let nuevaLetra = new Letra(mouseX, mouseY, charAleatorio);
+  letras.push(nuevaLetra);
+}
+´´´
+
 ## Bitácora de aplicación 
 
 
