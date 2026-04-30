@@ -245,6 +245,6 @@ Quiero que las letras de mi palabra sean catapultables. Quiero que salgan voland
 
 
 ## Bitácora de aplicación 
-
+https://editor.p5js.org/Lula402/sketches/AIiRP9YeE
 
 ## Bitácora de reflexión
