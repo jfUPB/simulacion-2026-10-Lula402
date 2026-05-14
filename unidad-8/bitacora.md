@@ -227,36 +227,45 @@ REFERENCIAS STRUDEL: https://youtu.be/xAAbQMW0dFk
 Principalmente DJ.DAVE y Switch-Angel.
 
 MOODBOARD:
-
+<p align="center">
 <img width="720" height="720" alt="download (1)" src="https://github.com/user-attachments/assets/2be210d7-89ae-44bb-94fe-aba6dbb4df8c" />
-<img width="720" height="1280" alt="Particles2 png" src="https://github.com/user-attachments/assets/c19e99a2-8ac3-4ff3-aa0a-d795f64d9d30" />
-<img width="736" height="414" alt="Backgrounds, Textured, Mobile Wallpaper" src="https://github.com/user-attachments/assets/7e4adbbc-5fee-4780-b886-7c07b4182448" />
-<img width="736" height="736" alt="download (2)" src="https://github.com/user-attachments/assets/f40188b0-9612-4b3f-b146-dba9c85cf790" />
+</p>
 
+<p align="center">
+<img width="720" height="1280" alt="Particles2 png" src="https://github.com/user-attachments/assets/c19e99a2-8ac3-4ff3-aa0a-d795f64d9d30" />
+</p>
+
+<p align="center">
+<img width="736" height="414" alt="Backgrounds, Textured, Mobile Wallpaper" src="https://github.com/user-attachments/assets/7e4adbbc-5fee-4780-b886-7c07b4182448" />
+</p>
+
+<p align="center">
+<img width="736" height="736" alt="download (2)" src="https://github.com/user-attachments/assets/f40188b0-9612-4b3f-b146-dba9c85cf790" />
+</p>
 
 ## 7. Bocetos
 
 Inicialmente era 2D y solo morado y naranja:
 
+<p align="center">
 <img width="1280" height="1119" alt="image" src="https://github.com/user-attachments/assets/fde3c4c3-f5e4-410c-8c3d-f720438c2029" />
+</p>
 
 Luego plantee la tranferencia de Oscillation a 3D:
 
+<p align="center">
 <img width="1280" height="643" alt="image" src="https://github.com/user-attachments/assets/610f7fb8-7686-4503-a96b-1d9a2df5f67e" />
+</p>
 
 
 ## 8. Mapa de decisiones
 
-<p align=center>
-
+<p align="center">
 <img width="1050" height="677" alt="image" src="https://github.com/user-attachments/assets/3973588a-af14-4fb1-b1c1-ab89e7cef80e" />
-
 </p>
 
-<p align=center>
-  
+<p align="center">
 <img width="1052" height="526" alt="image" src="https://github.com/user-attachments/assets/f4e66e48-fb0e-485c-8fe9-189798f437c7" />
-
 </p>
 
 
