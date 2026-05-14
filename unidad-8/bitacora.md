@@ -133,7 +133,8 @@ animate();
 
 
 WaveSphere.js
-``` 
+
+```js
 import * as THREE from 'three';
 
 export class WaveSphere {
@@ -246,6 +247,17 @@ Luego plantee la tranferencia de Oscillation a 3D:
 
 ## 8. Mapa de decisiones
 
+<p align=center>
+
+<img width="1050" height="677" alt="image" src="https://github.com/user-attachments/assets/3973588a-af14-4fb1-b1c1-ab89e7cef80e" />
+
+</p>
+
+<p align=center>
+  
+<img width="1052" height="526" alt="image" src="https://github.com/user-attachments/assets/f4e66e48-fb0e-485c-8fe9-189798f437c7" />
+
+</p>
 
 
 ## 9. Mapa de presentación
